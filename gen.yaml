@@ -1,4 +1,9 @@
 configVersion: 1.0.0
+management:
+  docChecksum: a9536751f1b160219c1301952f938b46
+  docVersion: ""
+  speakeasyVersion: 1.70.2
+  generationVersion: 2.83.3
 generation:
   comments:
     disableComments: false
@@ -7,8 +12,12 @@ generation:
   sdkClassName: test-bac
   singleTagPerOp: false
   tagNamespacingDisabled: false
+features:
+  python:
+    core: 2.82.0
+    globalServerURLs: 2.81.1
 python:
-  version: 0.0.1
+  version: 0.1.0
   author: team-ws
   description: Python Client SDK for Bac API
   maxMethodParams: 0
