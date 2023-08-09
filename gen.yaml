@@ -1,0 +1,15 @@
+configVersion: 1.0.0
+generation:
+  comments:
+    disableComments: false
+    omitDescriptionIfSummaryPresent: false
+  baseServerURL: ""
+  sdkClassName: test-bac
+  singleTagPerOp: false
+  tagNamespacingDisabled: false
+python:
+  version: 0.0.1
+  author: team-ws
+  description: Python Client SDK for Bac API
+  maxMethodParams: 0
+  packageName: bac-test
