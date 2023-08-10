@@ -9,7 +9,7 @@ generation:
     disableComments: false
     omitDescriptionIfSummaryPresent: false
   baseServerURL: ""
-  sdkClassName: test-bac
+  sdkClassName: bac
   singleTagPerOp: false
   tagNamespacingDisabled: false
 features:
