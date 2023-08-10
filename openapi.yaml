@@ -15,6 +15,24 @@ info:
   version: ''
 servers:
   - url: 'http://bootstrap.production.bacalhau.org:1234/'
+tags:
+  - name: Job
+  - name: Health
+  - name: Utils
+  - name: Misc
+x-speakeasy-name-override:
+  - operationId: ^get.*
+    methodNameOverride: get
+  - operationId: ^approve.*
+    methodNameOverride: approve
+  - operationId: ^cancel.*
+    methodNameOverride: cancel
+  - operationId: ^list.*
+    methodNameOverride: list
+  - operationId: ^display.*
+    methodNameOverride: display
+  - operationId: ^submit.*
+    methodNameOverride: submit
 paths:
   /approve:
     get:
@@ -23,27 +41,30 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Success'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '403':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Forbidden'
           description: Forbidden
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
-      operationId: apiServer/approver
+      x-speakeasy-group: Job
+      tags:
+        - Job
+      operationId: approveJob
       summary: Approves a job to be run on this compute node.
   /debug:
     get:
@@ -52,17 +73,18 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Success'
           description: OK
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Health
-      operationId: apiServer/debug
+      x-speakeasy-group: Debug
+      operationId: getDebug
       summary: Returns debug information on what the current node is doing.
   /healthz:
     get:
@@ -71,11 +93,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/types.HealthInfo'
+                $ref: '#/components/schemas/HealthInfo'
           description: OK
       tags:
         - Utils
-      operationId: healthz
+      x-speakeasy-group: Healthz
+      operationId: getHealthz
   /id:
     get:
       responses:
@@ -83,7 +106,7 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
+                $ref: '#/components/schemas/PlainSuccess'
           description: OK
         '500':
           content:
@@ -93,7 +116,8 @@ paths:
           description: Internal Server Error
       tags:
         - Utils
-      operationId: id
+      x-speakeasy-group: HostNodeId
+      operationId: getHostNodeId
       summary: Returns the id of the host node.
   /livez:
     get:
@@ -102,11 +126,12 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
+                $ref: '#/components/schemas/PlainSuccess'
           description: TODO
       tags:
         - Utils
-      operationId: livez
+      x-speakeasy-group: Livez
+      operationId: getLivez
   /logz:
     get:
       responses:
@@ -114,11 +139,12 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
+                $ref: '#/components/schemas/PlainSuccess'
           description: TODO
       tags:
         - Utils
-      operationId: logz
+      x-speakeasy-group: Logz
+      operationId: getLogz
   /node_info:
     get:
       responses:
@@ -126,17 +152,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/model.NodeInfo'
+                $ref: '#/components/schemas/NodeInfo'
           description: OK
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Utils
-      operationId: nodeInfo
+      x-speakeasy-group: NodeInfo
+      operationId: getNodeInfo
       summary: Returns the info of the node.
   /peers:
     get:
@@ -153,7 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Utils
@@ -178,7 +205,8 @@ paths:
         }
 
         ```
-      operationId: peers
+      operationId: getConnectedPeers
+      x-speakeasy-group: ConnectedPeers
       summary: Returns the peers connected to the host via the transport layer.
   /readyz:
     get:
@@ -187,11 +215,12 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
+                $ref: '#/components/schemas/PlainSuccess'
           description: OK
       tags:
         - Utils
-      operationId: readyz
+      x-speakeasy-group: Readyz
+      operationId: getReadyz
   /requester/cancel:
     post:
       responses:
@@ -199,31 +228,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.cancelResponse'
+                $ref: '#/components/schemas/cancelResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '401':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Unauthorized'
           description: Unauthorized
         '403':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Forbidden'
           description: Forbidden
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
@@ -234,12 +263,13 @@ paths:
 
         Returns the current jobstate after the cancel request has been
         processed.
-      operationId: pkg/requester/publicapi/cancel
+      operationId: cancelJob
+      x-speakeasy-group: Job
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/publicapi.cancelRequest'
+              $ref: '#/components/schemas/cancelRequest'
         description: ' '
         required: true
       summary: Cancels the job with the job-id specified in the body payload.
@@ -250,17 +280,18 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Success'
           description: OK
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Health
-      operationId: pkg/requester/publicapi/debug
+      x-speakeasy-group: RequesterDebug
+      operationId: getRequesterDebug
       summary: Returns debug information on what the current node is doing.
   /requester/events:
     post:
@@ -269,31 +300,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.eventsResponse'
+                $ref: '#/components/schemas/eventsResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
+      x-speakeasy-group: JobEvents
       description: >
         Events (e.g. Created, Bid, BidAccepted, ..., ResultsAccepted,
         ResultsPublished) are useful to track the progress of a job.
-      operationId: pkg/requester/publicapi/events
+      operationId: getJobEvents
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/publicapi.eventsRequest'
+              $ref: '#/components/schemas/eventsRequest'
         description: >-
           Request must specify a `client_id`. To retrieve your `client_id`, you
           can do the following: (1) submit a dummy job to Bacalhau (or use one
@@ -310,22 +342,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.listResponse'
+                $ref: '#/components/schemas/listResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
+      x-speakeasy-group: Jobs
       description: >-
         Returns the first (sorted) #`max_jobs` jobs that belong to the
         `client_id` passed in the body payload (by default).
@@ -335,12 +368,12 @@ paths:
 
 
         If `id` is set, it returns only the job with that ID.
-      operationId: pkg/requester/publicapi/list
+      operationId: listJobs
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/publicapi.listRequest'
+              $ref: '#/components/schemas/listRequest'
         description: >-
           Set `return_all` to `true` to return all jobs on the network (may
           degrade performance, use with care!).
@@ -353,34 +386,35 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Success'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '401':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Unauthorized'
           description: Unauthorized
         '403':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Forbidden'
           description: Forbidden
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
+      x-speakeasy-group: JobLogs
       description: >-
         Shows the output from the job specified by `id` as long as that job
         belongs to `client_id`.
@@ -388,12 +422,12 @@ paths:
 
         The ouput will be continuous until either, the client disconnects or the
         execution completes.
-      operationId: pkg/requester/publicapi/logs
+      operationId: displayJobLogs
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/publicapi.logRequest'
+              $ref: '#/components/schemas/logRequest'
         description: ' '
         required: true
       summary: Displays the logs for a current job/execution
@@ -405,16 +439,19 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/model.NodeInfo'
+                  $ref: '#/components/schemas/NodeInfo'
                 type: array
           description: OK
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
-      operationId: pkg/requester/publicapi/nodes
+      tags:
+        - Job
+      x-speakeasy-group: Nodes
+      operationId: displayNodes
       summary: Displays the nodes that this requester knows about
   /requester/results:
     post:
@@ -423,22 +460,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.resultsResponse'
+                $ref: '#/components/schemas/resultsResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
+      x-speakeasy-group: Results
       description: |-
         Example response:
 
@@ -456,9 +494,9 @@ paths:
           ]
         }
         ```
-      operationId: pkg/requester/publicapi/results
+      operationId: getResults
       requestBody:
-        $ref: '#/components/requestBodies/publicapi.stateRequest'
+        $ref: '#/components/requestBodies/stateRequest'
       summary: Returns the results of the job-id specified in the body payload.
   /requester/states:
     post:
@@ -467,22 +505,23 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.stateResponse'
+                $ref: '#/components/schemas/stateResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
+      x-speakeasy-group: States
       description: |-
         Example response:
 
@@ -540,9 +579,9 @@ paths:
           }
         }
         ```
-      operationId: pkg/requester/publicapi/states
+      operationId: getStates
       requestBody:
-        $ref: '#/components/requestBodies/publicapi.stateRequest'
+        $ref: '#/components/requestBodies/stateRequest'
       summary: Returns the state of the job-id specified in the body payload.
   /requester/submit:
     post:
@@ -551,29 +590,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.submitResponse'
+                $ref: '#/components/schemas/submitResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Job
+      x-speakeasy-group: Job
       description: "Description:\n\n* `client_public_key`: The base64-encoded public key of the client.\n* `signature`: A base64-encoded signature of the `data` attribute, signed by the client.\n* `payload`:\n    * `ClientID`: Request must specify a `ClientID`. To retrieve your `ClientID`, you can do the following: (1) submit a dummy job to Bacalhau (or use one you created before), (2) run `bacalhau describe <job-id>` and fetch the `ClientID` field.\n\t* `APIVersion`: e.g. `\"V1beta1\"`.\n    * `Spec`: https://github.com/bacalhau-project/bacalhau/blob/main/pkg/model/job.go\n"
-      operationId: pkg/requester/publicapi/submit
+      operationId: submitJob
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/publicapi.submitRequest'
+              $ref: '#/components/schemas/submitRequest'
         description: ' '
         required: true
       summary: Submits a new job to the network.
@@ -584,13 +624,12 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  type: integer
-                type: array
+                $ref: '#/components/schemas/VarzSuccess'
           description: OK
       tags:
         - Utils
-      operationId: varz
+      x-speakeasy-group: Varz
+      operationId: getVarz
   /version:
     post:
       responses:
@@ -598,31 +637,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/publicapi.VersionResponse'
+                $ref: '#/components/schemas/VersionResponse'
           description: OK
         '400':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/BadRequest'
           description: Bad Request
         '500':
           content:
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/InternalServerError'
           description: Internal Server Error
       tags:
         - Misc
+      x-speakeasy-group: BuildVersion
       description: >-
         See https://github.com/bacalhau-project/bacalhau/releases for a complete
         list of `gitversion` tags.
-      operationId: apiServer/version
+      operationId: getBuildVersion
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/publicapi.VersionRequest'
+              $ref: '#/components/schemas/VersionRequest'
         description: >-
           Request must specify a `client_id`. To retrieve your `client_id`, you
           can do the following: (1) submit a dummy job to Bacalhau (or use one
@@ -632,15 +672,67 @@ paths:
       summary: Returns the build version running on the server.
 components:
   requestBodies:
-    publicapi.stateRequest:
+    stateRequest:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/publicapi.stateRequest'
+            $ref: '#/components/schemas/stateRequest'
       description: ' '
       required: true
   schemas:
-    model.BuildVersionInfo:
+    PlainSuccess:
+      type: string
+      example: OK
+    VarzSuccess:
+      type: array
+      items:
+        type: integer
+    InternalServerError:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 500
+        message:
+          type: string
+          example: Internal Server Error
+    Forbidden:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 403
+        message:
+          type: string
+          example: Forbidden
+    Unauthorized:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: Unauthorized
+    BadRequest:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
+    Success:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: Ok
+    BuildVersionInfo:
       properties:
         builddate:
           example: '2022-11-16T14:03:31Z'
@@ -664,32 +756,32 @@ components:
           example: '3'
           type: string
       type: object
-    model.ComputeNodeInfo:
+    ComputeNodeInfo:
       properties:
         AvailableCapacity:
-          $ref: '#/components/schemas/model.ResourceUsageData'
+          $ref: '#/components/schemas/ResourceUsageData'
         EnqueuedExecutions:
           type: integer
         ExecutionEngines:
           items:
-            $ref: '#/components/schemas/model.Engine'
+            $ref: '#/components/schemas/Engine'
           type: array
         MaxCapacity:
-          $ref: '#/components/schemas/model.ResourceUsageData'
+          $ref: '#/components/schemas/ResourceUsageData'
         MaxJobRequirements:
-          $ref: '#/components/schemas/model.ResourceUsageData'
+          $ref: '#/components/schemas/ResourceUsageData'
         Publishers:
           items:
-            $ref: '#/components/schemas/model.Publisher'
+            $ref: '#/components/schemas/Publisher'
           type: array
         RunningExecutions:
           type: integer
         StorageSources:
           items:
-            $ref: '#/components/schemas/model.StorageSourceType'
+            $ref: '#/components/schemas/StorageSourceType'
           type: array
       type: object
-    model.Deal:
+    Deal:
       properties:
         Concurrency:
           description: |-
@@ -704,7 +796,7 @@ components:
             ignored.
           type: boolean
       type: object
-    model.Engine:
+    Engine:
       enum:
         - 0
         - 1
@@ -721,7 +813,7 @@ components:
         - EngineDocker
         - EngineWasm
         - engineDone
-    model.ExecutionDesiredState:
+    ExecutionDesiredState:
       enum:
         - 0
         - 1
@@ -731,7 +823,7 @@ components:
         - ExecutionDesiredStatePending
         - ExecutionDesiredStateRunning
         - ExecutionDesiredStateStopped
-    model.ExecutionState:
+    ExecutionState:
       properties:
         ComputeReference:
           description: Compute node reference for this job execution
@@ -741,7 +833,7 @@ components:
           type: string
         DesiredState:
           allOf:
-            - $ref: '#/components/schemas/model.ExecutionDesiredState'
+            - $ref: '#/components/schemas/ExecutionDesiredState'
           description: DesiredState is the desired state of the execution
         JobID:
           description: JobID the job id
@@ -751,15 +843,15 @@ components:
           type: string
         PublishedResults:
           allOf:
-            - $ref: '#/components/schemas/model.StorageSpec'
+            - $ref: '#/components/schemas/StorageSpec'
           description: the published results for this execution
         RunOutput:
           allOf:
-            - $ref: '#/components/schemas/model.RunCommandResult'
+            - $ref: '#/components/schemas/RunCommandResult'
           description: RunOutput of the job
         State:
           allOf:
-            - $ref: '#/components/schemas/model.ExecutionStateType'
+            - $ref: '#/components/schemas/ExecutionStateType'
           description: State is the current state of the execution
         Status:
           description: an arbitrary status message
@@ -773,7 +865,7 @@ components:
             time the job state is updated.
           type: integer
       type: object
-    model.ExecutionStateType:
+    ExecutionStateType:
       enum:
         - 0
         - 1
@@ -799,23 +891,23 @@ components:
         - ExecutionStateCompleted
         - ExecutionStateFailed
         - ExecutionStateCancelled
-    model.Job:
+    Job:
       properties:
         APIVersion:
           example: V1beta1
           type: string
         Metadata:
           allOf:
-            - $ref: '#/components/schemas/model.Metadata'
+            - $ref: '#/components/schemas/Metadata'
           description: >-
             TODO this doesn't seem like it should be a part of the job as it
             cannot be known by a client ahead of time.
         Spec:
           allOf:
-            - $ref: '#/components/schemas/model.Spec'
+            - $ref: '#/components/schemas/Spec'
           description: The specification of this job.
       type: object
-    model.JobCancelPayload:
+    JobCancelPayload:
       properties:
         ClientID:
           description: the id of the client that is submitting the job
@@ -830,7 +922,7 @@ components:
         - ClientID
         - JobID
       type: object
-    model.JobCreatePayload:
+    JobCreatePayload:
       properties:
         APIVersion:
           example: V1beta1
@@ -840,25 +932,25 @@ components:
           type: string
         Spec:
           allOf:
-            - $ref: '#/components/schemas/model.Spec'
+            - $ref: '#/components/schemas/Spec'
           description: The specification of this job.
       required:
         - APIVersion
         - ClientID
         - Spec
       type: object
-    model.JobHistory:
+    JobHistory:
       properties:
         Comment:
           type: string
         ComputeReference:
           type: string
         ExecutionState:
-          $ref: '#/components/schemas/model.StateChange-model_ExecutionStateType'
+          $ref: '#/components/schemas/StateChange-model_ExecutionStateType'
         JobID:
           type: string
         JobState:
-          $ref: '#/components/schemas/model.StateChange-model_JobStateType'
+          $ref: '#/components/schemas/StateChange-model_JobStateType'
         NewVersion:
           type: integer
         NodeID:
@@ -866,9 +958,9 @@ components:
         Time:
           type: string
         Type:
-          $ref: '#/components/schemas/model.JobHistoryType'
+          $ref: '#/components/schemas/JobHistoryType'
       type: object
-    model.JobHistoryType:
+    JobHistoryType:
       enum:
         - 0
         - 1
@@ -878,7 +970,7 @@ components:
         - jobHistoryTypeUndefined
         - JobHistoryTypeJobLevel
         - JobHistoryTypeExecutionLevel
-    model.JobRequester:
+    JobRequester:
       properties:
         RequesterNodeID:
           description: The ID of the requester node that owns this job.
@@ -890,7 +982,7 @@ components:
             This can be used to encrypt messages back to the creator
           type: string
       type: object
-    model.JobSpecDocker:
+    JobSpecDocker:
       properties:
         Entrypoint:
           description: optionally override the default entrypoint
@@ -914,11 +1006,11 @@ components:
           description: working directory inside the container
           type: string
       type: object
-    model.JobSpecWasm:
+    JobSpecWasm:
       properties:
         EntryModule:
           allOf:
-            - $ref: '#/components/schemas/model.StorageSpec'
+            - $ref: '#/components/schemas/StorageSpec'
           description: The module that contains the WASM code to start running.
         EntryPoint:
           description: >-
@@ -944,7 +1036,7 @@ components:
 
             to the EntryModule.
           items:
-            $ref: '#/components/schemas/model.StorageSpec'
+            $ref: '#/components/schemas/StorageSpec'
           type: array
         Parameters:
           description: The arguments supplied to the program (i.e. as ARGV).
@@ -952,7 +1044,7 @@ components:
             type: string
           type: array
       type: object
-    model.JobState:
+    JobState:
       properties:
         CreateTime:
           description: CreateTime is the time when the job was created.
@@ -967,14 +1059,14 @@ components:
             job due to retries, but there can only be a single active execution
             per node at any given time.
           items:
-            $ref: '#/components/schemas/model.ExecutionState'
+            $ref: '#/components/schemas/ExecutionState'
           type: array
         JobID:
           description: JobID is the unique identifier for the job
           type: string
         State:
           allOf:
-            - $ref: '#/components/schemas/model.JobStateType'
+            - $ref: '#/components/schemas/JobStateType'
           description: State is the current state of the job
         TimeoutAt:
           description: >-
@@ -990,7 +1082,7 @@ components:
             time the job state is updated.
           type: integer
       type: object
-    model.JobStateType:
+    JobStateType:
       enum:
         - 0
         - 1
@@ -1008,25 +1100,25 @@ components:
         - JobStateError
         - JobStateCompleted
         - JobStateQueued
-    model.JobWithInfo:
+    JobWithInfo:
       properties:
         History:
           description: >-
             History of changes to the job state. Not always populated in the job
             description
           items:
-            $ref: '#/components/schemas/model.JobHistory'
+            $ref: '#/components/schemas/JobHistory'
           type: array
         Job:
           allOf:
-            - $ref: '#/components/schemas/model.Job'
+            - $ref: '#/components/schemas/Job'
           description: Job info
         State:
           allOf:
-            - $ref: '#/components/schemas/model.JobState'
+            - $ref: '#/components/schemas/JobState'
           description: The current state of the job
       type: object
-    model.LabelSelectorRequirement:
+    LabelSelectorRequirement:
       properties:
         Key:
           description: key is the label key that the selector applies to.
@@ -1050,7 +1142,7 @@ components:
             type: string
           type: array
       type: object
-    model.LogsPayload:
+    LogsPayload:
       properties:
         ClientID:
           description: the id of the client that is requesting the logs
@@ -1072,7 +1164,7 @@ components:
         - ExecutionID
         - JobID
       type: object
-    model.Metadata:
+    Metadata:
       properties:
         ClientID:
           description: The ID of the client that created this job.
@@ -1087,9 +1179,9 @@ components:
           example: 92d5d4ee-3765-4f78-8353-623f5f26df08
           type: string
         Requester:
-          $ref: '#/components/schemas/model.JobRequester'
+          $ref: '#/components/schemas/JobRequester'
       type: object
-    model.Network:
+    Network:
       enum:
         - 0
         - 1
@@ -1099,31 +1191,31 @@ components:
         - NetworkNone
         - NetworkFull
         - NetworkHTTP
-    model.NetworkConfig:
+    NetworkConfig:
       properties:
         Domains:
           items:
             type: string
           type: array
         Type:
-          $ref: '#/components/schemas/model.Network'
+          $ref: '#/components/schemas/Network'
       type: object
-    model.NodeInfo:
+    NodeInfo:
       properties:
         BacalhauVersion:
-          $ref: '#/components/schemas/model.BuildVersionInfo'
+          $ref: '#/components/schemas/BuildVersionInfo'
         ComputeNodeInfo:
-          $ref: '#/components/schemas/model.ComputeNodeInfo'
+          $ref: '#/components/schemas/ComputeNodeInfo'
         Labels:
           additionalProperties:
             type: string
           type: object
         NodeType:
-          $ref: '#/components/schemas/model.NodeType'
+          $ref: '#/components/schemas/NodeType'
         PeerInfo:
           $ref: '#/components/schemas/peer.AddrInfo'
       type: object
-    model.NodeType:
+    NodeType:
       enum:
         - 0
         - 1
@@ -1131,14 +1223,14 @@ components:
       x-enum-varnames:
         - NodeTypeRequester
         - NodeTypeCompute
-    model.PublishedResult:
+    PublishedResult:
       properties:
         Data:
-          $ref: '#/components/schemas/model.StorageSpec'
+          $ref: '#/components/schemas/StorageSpec'
         NodeID:
           type: string
       type: object
-    model.Publisher:
+    Publisher:
       enum:
         - 0
         - 1
@@ -1157,15 +1249,15 @@ components:
         - PublisherEstuary
         - PublisherS3
         - publisherDone
-    model.PublisherSpec:
+    PublisherSpec:
       properties:
         Params:
           additionalProperties: true
           type: object
         Type:
-          $ref: '#/components/schemas/model.Publisher'
+          $ref: '#/components/schemas/Publisher'
       type: object
-    model.ResourceUsageConfig:
+    ResourceUsageConfig:
       properties:
         CPU:
           description: 'https://github.com/BTBurke/k8sresource string'
@@ -1179,7 +1271,7 @@ components:
           description: github.com/c2h5oh/datasize string
           type: string
       type: object
-    model.ResourceUsageData:
+    ResourceUsageData:
       properties:
         CPU:
           description: cpu units
@@ -1197,7 +1289,7 @@ components:
           example: 27487790694
           type: integer
       type: object
-    model.RunCommandResult:
+    RunCommandResult:
       properties:
         exitCode:
           description: exit code of the run.
@@ -1218,7 +1310,7 @@ components:
           description: bool describing if stdout was truncated
           type: boolean
       type: object
-    model.S3StorageSpec:
+    S3StorageSpec:
       properties:
         Bucket:
           type: string
@@ -1233,7 +1325,7 @@ components:
         VersionID:
           type: string
       type: object
-    model.Spec:
+    Spec:
       properties:
         Annotations:
           description: Annotations on the job - could be user or machine assigned
@@ -1242,7 +1334,7 @@ components:
           type: array
         Deal:
           allOf:
-            - $ref: '#/components/schemas/model.Deal'
+            - $ref: '#/components/schemas/Deal'
           description: >-
             The deal the client has made, such as which job bids they have
             accepted.
@@ -1251,48 +1343,48 @@ components:
           type: boolean
         Docker:
           allOf:
-            - $ref: '#/components/schemas/model.JobSpecDocker'
+            - $ref: '#/components/schemas/JobSpecDocker'
           description: executor specific data
         Engine:
           allOf:
-            - $ref: '#/components/schemas/model.Engine'
+            - $ref: '#/components/schemas/Engine'
           description: e.g. docker or language
         Inputs:
           description: |-
             the data volumes we will read in the job
             for example "read this ipfs cid"
           items:
-            $ref: '#/components/schemas/model.StorageSpec'
+            $ref: '#/components/schemas/StorageSpec'
           type: array
         Network:
           allOf:
-            - $ref: '#/components/schemas/model.NetworkConfig'
+            - $ref: '#/components/schemas/NetworkConfig'
           description: The type of networking access that the job needs
         NodeSelectors:
           description: >-
             NodeSelectors is a selector which must be true for the compute node
             to run this job.
           items:
-            $ref: '#/components/schemas/model.LabelSelectorRequirement'
+            $ref: '#/components/schemas/LabelSelectorRequirement'
           type: array
         Outputs:
           description: |-
             the data volumes we will write in the job
             for example "write the results to ipfs"
           items:
-            $ref: '#/components/schemas/model.StorageSpec'
+            $ref: '#/components/schemas/StorageSpec'
           type: array
         Publisher:
           allOf:
-            - $ref: '#/components/schemas/model.Publisher'
+            - $ref: '#/components/schemas/Publisher'
           description: |-
             there can be multiple publishers for the job
             deprecated: use PublisherSpec instead
         PublisherSpec:
-          $ref: '#/components/schemas/model.PublisherSpec'
+          $ref: '#/components/schemas/PublisherSpec'
         Resources:
           allOf:
-            - $ref: '#/components/schemas/model.ResourceUsageConfig'
+            - $ref: '#/components/schemas/ResourceUsageConfig'
           description: 'the compute (cpu, ram) resources this job requires'
         Timeout:
           description: |-
@@ -1300,23 +1392,23 @@ components:
             This includes the time required to run, verify and publish results
           type: integer
         Wasm:
-          $ref: '#/components/schemas/model.JobSpecWasm'
+          $ref: '#/components/schemas/JobSpecWasm'
       type: object
-    model.StateChange-model_ExecutionStateType:
+    StateChange-model_ExecutionStateType:
       properties:
         New:
-          $ref: '#/components/schemas/model.ExecutionStateType'
+          $ref: '#/components/schemas/ExecutionStateType'
         Previous:
-          $ref: '#/components/schemas/model.ExecutionStateType'
+          $ref: '#/components/schemas/ExecutionStateType'
       type: object
-    model.StateChange-model_JobStateType:
+    StateChange-model_JobStateType:
       properties:
         New:
-          $ref: '#/components/schemas/model.JobStateType'
+          $ref: '#/components/schemas/JobStateType'
         Previous:
-          $ref: '#/components/schemas/model.JobStateType'
+          $ref: '#/components/schemas/JobStateType'
       type: object
-    model.StorageSourceType:
+    StorageSourceType:
       enum:
         - 0
         - 1
@@ -1343,7 +1435,7 @@ components:
         - StorageSourceLocalDirectory
         - StorageSourceS3
         - storageSourceDone
-    model.StorageSpec:
+    StorageSpec:
       properties:
         CID:
           description: >-
@@ -1381,13 +1473,13 @@ components:
           description: URL of the git Repo to clone
           type: string
         S3:
-          $ref: '#/components/schemas/model.S3StorageSpec'
+          $ref: '#/components/schemas/S3StorageSpec'
         SourcePath:
           description: The path of the host data if we are using local directory paths
           type: string
         StorageSource:
           allOf:
-            - $ref: '#/components/schemas/model.StorageSourceType'
+            - $ref: '#/components/schemas/StorageSourceType'
           description: >-
             StorageSource is the abstract source of the data. E.g. a storage
             source
@@ -1408,7 +1500,7 @@ components:
         id:
           type: string
       type: object
-    publicapi.EventFilterOptions:
+    EventFilterOptions:
       properties:
         exclude_execution_level:
           type: boolean
@@ -1417,25 +1509,25 @@ components:
         since:
           type: integer
       type: object
-    publicapi.VersionRequest:
+    VersionRequest:
       properties:
         client_id:
           example: ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51
           type: string
       type: object
-    publicapi.VersionResponse:
+    VersionResponse:
       properties:
         build_version_info:
-          $ref: '#/components/schemas/model.BuildVersionInfo'
+          $ref: '#/components/schemas/BuildVersionInfo'
       type: object
-    publicapi.cancelRequest:
+    cancelRequest:
       properties:
         client_public_key:
           description: 'The base64-encoded public key of the client:'
           type: string
         payload:
           allOf:
-            - $ref: '#/components/schemas/model.JobCancelPayload'
+            - $ref: '#/components/schemas/JobCancelPayload'
           description: The data needed to cancel a running job on the network
         signature:
           description: 'A base64-encoded signature of the data, signed by the client:'
@@ -1445,32 +1537,32 @@ components:
         - payload
         - signature
       type: object
-    publicapi.cancelResponse:
+    cancelResponse:
       properties:
         state:
-          $ref: '#/components/schemas/model.JobState'
+          $ref: '#/components/schemas/JobState'
       type: object
-    publicapi.eventsRequest:
+    eventsRequest:
       properties:
         client_id:
           example: ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51
           type: string
         filters:
           allOf:
-            - $ref: '#/components/schemas/publicapi.EventFilterOptions'
+            - $ref: '#/components/schemas/EventFilterOptions'
           description: Records the number of seconds since the unix epoch (UTC)
         job_id:
           example: 9304c616-291f-41ad-b862-54e133c0149e
           type: string
       type: object
-    publicapi.eventsResponse:
+    eventsResponse:
       properties:
         events:
           items:
-            $ref: '#/components/schemas/model.JobHistory'
+            $ref: '#/components/schemas/JobHistory'
           type: array
       type: object
-    publicapi.listRequest:
+    listRequest:
       properties:
         client_id:
           example: ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51
@@ -1501,21 +1593,21 @@ components:
         sort_reverse:
           type: boolean
       type: object
-    publicapi.listResponse:
+    listResponse:
       properties:
         jobs:
           items:
-            $ref: '#/components/schemas/model.JobWithInfo'
+            $ref: '#/components/schemas/JobWithInfo'
           type: array
       type: object
-    publicapi.logRequest:
+    logRequest:
       properties:
         client_public_key:
           description: 'The base64-encoded public key of the client:'
           type: string
         payload:
           allOf:
-            - $ref: '#/components/schemas/model.LogsPayload'
+            - $ref: '#/components/schemas/LogsPayload'
           description: The data needed to cancel a running job on the network
         signature:
           description: 'A base64-encoded signature of the data, signed by the client:'
@@ -1525,14 +1617,14 @@ components:
         - payload
         - signature
       type: object
-    publicapi.resultsResponse:
+    resultsResponse:
       properties:
         results:
           items:
-            $ref: '#/components/schemas/model.PublishedResult'
+            $ref: '#/components/schemas/PublishedResult'
           type: array
       type: object
-    publicapi.stateRequest:
+    stateRequest:
       properties:
         client_id:
           example: ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51
@@ -1541,19 +1633,19 @@ components:
           example: 9304c616-291f-41ad-b862-54e133c0149e
           type: string
       type: object
-    publicapi.stateResponse:
+    stateResponse:
       properties:
         state:
-          $ref: '#/components/schemas/model.JobState'
+          $ref: '#/components/schemas/JobState'
       type: object
-    publicapi.submitRequest:
+    submitRequest:
       properties:
         client_public_key:
           description: 'The base64-encoded public key of the client:'
           type: string
         payload:
           allOf:
-            - $ref: '#/components/schemas/model.JobCreatePayload'
+            - $ref: '#/components/schemas/JobCreatePayload'
           description: The data needed to cancel a running job on the network
         signature:
           description: 'A base64-encoded signature of the data, signed by the client:'
@@ -1563,10 +1655,10 @@ components:
         - payload
         - signature
       type: object
-    publicapi.submitResponse:
+    submitResponse:
       properties:
         job:
-          $ref: '#/components/schemas/model.Job'
+          $ref: '#/components/schemas/Job'
       type: object
     selection.Operator:
       enum:
@@ -1590,21 +1682,21 @@ components:
         - Exists
         - GreaterThan
         - LessThan
-    types.FreeSpace:
+    FreeSpace:
       properties:
         IPFSMount:
-          $ref: '#/components/schemas/types.MountStatus'
+          $ref: '#/components/schemas/MountStatus'
         root:
-          $ref: '#/components/schemas/types.MountStatus'
+          $ref: '#/components/schemas/MountStatus'
         tmp:
-          $ref: '#/components/schemas/types.MountStatus'
+          $ref: '#/components/schemas/MountStatus'
       type: object
-    types.HealthInfo:
+    HealthInfo:
       properties:
         FreeSpace:
-          $ref: '#/components/schemas/types.FreeSpace'
+          $ref: '#/components/schemas/FreeSpace'
       type: object
-    types.MountStatus:
+    MountStatus:
       properties:
         All:
           type: integer
