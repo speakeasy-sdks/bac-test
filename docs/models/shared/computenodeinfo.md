@@ -1,0 +1,15 @@
+# ComputeNodeInfo
+
+
+## Fields
+
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `available_capacity`                                                    | [Optional[ResourceUsageData]](../../models/shared/resourceusagedata.md) | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `enqueued_executions`                                                   | *Optional[int]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `execution_engines`                                                     | list[[Engine](../../models/shared/engine.md)]                           | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `max_capacity`                                                          | [Optional[ResourceUsageData]](../../models/shared/resourceusagedata.md) | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `max_job_requirements`                                                  | [Optional[ResourceUsageData]](../../models/shared/resourceusagedata.md) | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `publishers`                                                            | list[[Publisher](../../models/shared/publisher.md)]                     | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `running_executions`                                                    | *Optional[int]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `storage_sources`                                                       | list[[StorageSourceType](../../models/shared/storagesourcetype.md)]     | :heavy_minus_sign:                                                      | N/A                                                                     |

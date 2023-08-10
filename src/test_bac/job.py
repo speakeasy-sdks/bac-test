@@ -12,7 +12,51 @@ class Job:
         self.sdk_configuration = sdk_config
         
     
-    def pkg_requester_publicapi_cancel(self, request: shared.PublicapiCancelRequest) -> operations.PkgRequesterPublicapiCancelResponse:
+    def approve(self) -> operations.ApproveJobResponse:
+        r"""Approves a job to be run on this compute node."""
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = base_url + '/approve'
+        headers = {}
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        
+        client = self.sdk_configuration.client
+        
+        http_res = client.request('GET', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+
+        res = operations.ApproveJobResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.Success])
+                res.success = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code == 400:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.BadRequest])
+                res.bad_request = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code == 403:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.Forbidden])
+                res.forbidden = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code == 500:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.InternalServerError])
+                res.internal_server_error = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    def cancel(self, request: shared.CancelRequest) -> operations.CancelJobResponse:
         r"""Cancels the job with the job-id specified in the body payload.
         Cancels a job specified by `id` as long as that job belongs to `client_id`.
 
@@ -35,338 +79,43 @@ class Job:
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
-        res = operations.PkgRequesterPublicapiCancelResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.CancelJobResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.PublicapiCancelResponse])
-                res.publicapi_cancel_response = out
+                out = utils.unmarshal_json(http_res.text, Optional[shared.CancelResponse])
+                res.cancel_response = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400:
             if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_cancel_400_application_json_string = http_res.content
+                out = utils.unmarshal_json(http_res.text, Optional[shared.BadRequest])
+                res.bad_request = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 401:
             if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_cancel_401_application_json_string = http_res.content
+                out = utils.unmarshal_json(http_res.text, Optional[shared.Unauthorized])
+                res.unauthorized = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 403:
             if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_cancel_403_application_json_string = http_res.content
+                out = utils.unmarshal_json(http_res.text, Optional[shared.Forbidden])
+                res.forbidden = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 500:
             if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_cancel_500_application_json_string = http_res.content
+                out = utils.unmarshal_json(http_res.text, Optional[shared.InternalServerError])
+                res.internal_server_error = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
 
         return res
 
     
-    def pkg_requester_publicapi_events(self, request: shared.PublicapiEventsRequest) -> operations.PkgRequesterPublicapiEventsResponse:
-        r"""Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
-        Events (e.g. Created, Bid, BidAccepted, ..., ResultsAccepted, ResultsPublished) are useful to track the progress of a job.
-        """
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = base_url + '/requester/events'
-        headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
-        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
-            headers['content-type'] = req_content_type
-        if data is None and form is None:
-            raise Exception('request body is required')
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
-        
-        client = self.sdk_configuration.client
-        
-        http_res = client.request('POST', url, data=data, files=form, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-
-        res = operations.PkgRequesterPublicapiEventsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.PublicapiEventsResponse])
-                res.publicapi_events_response = out
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 400:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_events_400_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 500:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_events_500_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    def pkg_requester_publicapi_list(self, request: shared.PublicapiListRequest) -> operations.PkgRequesterPublicapiListResponse:
-        r"""Simply lists jobs.
-        Returns the first (sorted) #`max_jobs` jobs that belong to the `client_id` passed in the body payload (by default).
-        If `return_all` is set to true, it returns all jobs on the Bacalhau network.
-
-        If `id` is set, it returns only the job with that ID.
-        """
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = base_url + '/requester/list'
-        headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
-        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
-            headers['content-type'] = req_content_type
-        if data is None and form is None:
-            raise Exception('request body is required')
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
-        
-        client = self.sdk_configuration.client
-        
-        http_res = client.request('POST', url, data=data, files=form, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-
-        res = operations.PkgRequesterPublicapiListResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.PublicapiListResponse])
-                res.publicapi_list_response = out
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 400:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_list_400_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 500:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_list_500_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    def pkg_requester_publicapi_logs(self, request: shared.PublicapiLogRequest) -> operations.PkgRequesterPublicapiLogsResponse:
-        r"""Displays the logs for a current job/execution
-        Shows the output from the job specified by `id` as long as that job belongs to `client_id`.
-
-        The ouput will be continuous until either, the client disconnects or the execution completes.
-        """
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = base_url + '/requester/logs'
-        headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
-        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
-            headers['content-type'] = req_content_type
-        if data is None and form is None:
-            raise Exception('request body is required')
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
-        
-        client = self.sdk_configuration.client
-        
-        http_res = client.request('POST', url, data=data, files=form, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-
-        res = operations.PkgRequesterPublicapiLogsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_logs_200_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 400:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_logs_400_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 401:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_logs_401_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 403:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_logs_403_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 500:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_logs_500_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    def pkg_requester_publicapi_results(self, request: shared.PublicapiStateRequest) -> operations.PkgRequesterPublicapiResultsResponse:
-        r"""Returns the results of the job-id specified in the body payload.
-        Example response:
-
-        ```json
-        {
-          \"results\": [
-            {
-              \"NodeID\": \"QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL\",
-              \"Data\": {
-                \"StorageSource\": \"IPFS\",
-                \"Name\": \"job-9304c616-291f-41ad-b862-54e133c0149e-shard-0-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL\",
-                \"CID\": \"QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe\"
-              }
-            }
-          ]
-        }
-        ```
-        """
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = base_url + '/requester/results'
-        headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
-        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
-            headers['content-type'] = req_content_type
-        if data is None and form is None:
-            raise Exception('request body is required')
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
-        
-        client = self.sdk_configuration.client
-        
-        http_res = client.request('POST', url, data=data, files=form, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-
-        res = operations.PkgRequesterPublicapiResultsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.PublicapiResultsResponse])
-                res.publicapi_results_response = out
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 400:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_results_400_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 500:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_results_500_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    def pkg_requester_publicapi_states(self, request: shared.PublicapiStateRequest) -> operations.PkgRequesterPublicapiStatesResponse:
-        r"""Returns the state of the job-id specified in the body payload.
-        Example response:
-
-        ```json
-        {
-          \"state\": {
-            \"Nodes\": {
-              \"QmSyJ8VUd4YSPwZFJSJsHmmmmg7sd4BAc2yHY73nisJo86\": {
-                \"Shards\": {
-                  \"0\": {
-                    \"NodeId\": \"QmSyJ8VUd4YSPwZFJSJsHmmmmg7sd4BAc2yHY73nisJo86\",
-                    \"State\": \"Cancelled\",
-                    \"VerificationResult\": {},
-                    \"PublishedResults\": {}
-                  }
-                }
-              },
-              \"QmYgxZiySj3MRkwLSL4X2MF5F9f2PMhAE3LV49XkfNL1o3\": {
-                \"Shards\": {
-                  \"0\": {
-                    \"NodeId\": \"QmYgxZiySj3MRkwLSL4X2MF5F9f2PMhAE3LV49XkfNL1o3\",
-                    \"State\": \"Cancelled\",
-                    \"VerificationResult\": {},
-                    \"PublishedResults\": {}
-                  }
-                }
-              },
-              \"QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL\": {
-                \"Shards\": {
-                  \"0\": {
-                    \"NodeId\": \"QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL\",
-                    \"State\": \"Completed\",
-                    \"Status\": \"Got results proposal of length: 0\",
-                    \"VerificationResult\": {
-                      \"Complete\": true,
-                      \"Result\": true
-                    },
-                    \"PublishedResults\": {
-                      \"StorageSource\": \"IPFS\",
-                      \"Name\": \"job-9304c616-291f-41ad-b862-54e133c0149e-shard-0-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL\",
-                      \"CID\": \"QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe\"
-                    },
-                    \"RunOutput\": {
-                      \"stdout\": \"Thu Nov 17 13:32:55 UTC 2022\n\",
-                      \"stdouttruncated\": false,
-                      \"stderr\": \"\",
-                      \"stderrtruncated\": false,
-                      \"exitCode\": 0,
-                      \"runnerError\": \"\"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        ```
-        """
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = base_url + '/requester/states'
-        headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
-        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
-            headers['content-type'] = req_content_type
-        if data is None and form is None:
-            raise Exception('request body is required')
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
-        
-        client = self.sdk_configuration.client
-        
-        http_res = client.request('POST', url, data=data, files=form, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-
-        res = operations.PkgRequesterPublicapiStatesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.PublicapiStateResponse])
-                res.publicapi_state_response = out
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 400:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_states_400_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code == 500:
-            if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_states_500_application_json_string = http_res.content
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    def pkg_requester_publicapi_submit(self, request: shared.PublicapiSubmitRequest) -> operations.PkgRequesterPublicapiSubmitResponse:
+    def submit(self, request: shared.SubmitRequest) -> operations.SubmitJobResponse:
         r"""Submits a new job to the network.
         Description:
 
@@ -394,22 +143,24 @@ class Job:
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
 
-        res = operations.PkgRequesterPublicapiSubmitResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.SubmitJobResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.PublicapiSubmitResponse])
-                res.publicapi_submit_response = out
+                out = utils.unmarshal_json(http_res.text, Optional[shared.SubmitResponse])
+                res.submit_response = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 400:
             if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_submit_400_application_json_string = http_res.content
+                out = utils.unmarshal_json(http_res.text, Optional[shared.BadRequest])
+                res.bad_request = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code == 500:
             if utils.match_content_type(content_type, 'application/json'):
-                res.pkg_requester_publicapi_submit_500_application_json_string = http_res.content
+                out = utils.unmarshal_json(http_res.text, Optional[shared.InternalServerError])
+                res.internal_server_error = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
 

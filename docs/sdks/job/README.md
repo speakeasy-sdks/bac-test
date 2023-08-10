@@ -2,15 +2,36 @@
 
 ### Available Operations
 
-* [pkg_requester_publicapi_cancel](#pkg_requester_publicapi_cancel) - Cancels the job with the job-id specified in the body payload.
-* [pkg_requester_publicapi_events](#pkg_requester_publicapi_events) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
-* [pkg_requester_publicapi_list](#pkg_requester_publicapi_list) - Simply lists jobs.
-* [pkg_requester_publicapi_logs](#pkg_requester_publicapi_logs) - Displays the logs for a current job/execution
-* [pkg_requester_publicapi_results](#pkg_requester_publicapi_results) - Returns the results of the job-id specified in the body payload.
-* [pkg_requester_publicapi_states](#pkg_requester_publicapi_states) - Returns the state of the job-id specified in the body payload.
-* [pkg_requester_publicapi_submit](#pkg_requester_publicapi_submit) - Submits a new job to the network.
+* [approve](#approve) - Approves a job to be run on this compute node.
+* [cancel](#cancel) - Cancels the job with the job-id specified in the body payload.
+* [submit](#submit) - Submits a new job to the network.
 
-## pkg_requester_publicapi_cancel
+## approve
+
+Approves a job to be run on this compute node.
+
+### Example Usage
+
+```python
+import test_bac
+
+
+s = test_bac.TestBac()
+
+
+res = s.job.approve()
+
+if res.success is not None:
+    # handle response
+```
+
+
+### Response
+
+**[operations.ApproveJobResponse](../../models/operations/approvejobresponse.md)**
+
+
+## cancel
 
 Cancels a job specified by `id` as long as that job belongs to `client_id`.
 
@@ -24,9 +45,9 @@ from test_bac.models import shared
 
 s = test_bac.TestBac()
 
-req = shared.PublicapiCancelRequest(
+req = shared.CancelRequest(
     client_public_key='corrupti',
-    payload=shared.ModelJobCancelPayload(
+    payload=shared.JobCancelPayload(
         client_id='provident',
         job_id='distinctio',
         reason='quibusdam',
@@ -34,302 +55,25 @@ req = shared.PublicapiCancelRequest(
     signature='unde',
 )
 
-res = s.job.pkg_requester_publicapi_cancel(req)
+res = s.job.cancel(req)
 
-if res.publicapi_cancel_response is not None:
+if res.cancel_response is not None:
     # handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [shared.PublicapiCancelRequest](../../models/shared/publicapicancelrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `request`                                                    | [shared.CancelRequest](../../models/shared/cancelrequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
 
 ### Response
 
-**[operations.PkgRequesterPublicapiCancelResponse](../../models/operations/pkgrequesterpublicapicancelresponse.md)**
+**[operations.CancelJobResponse](../../models/operations/canceljobresponse.md)**
 
 
-## pkg_requester_publicapi_events
-
-Events (e.g. Created, Bid, BidAccepted, ..., ResultsAccepted, ResultsPublished) are useful to track the progress of a job.
-
-
-### Example Usage
-
-```python
-import test_bac
-from test_bac.models import shared
-
-s = test_bac.TestBac()
-
-req = shared.PublicapiEventsRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-    filters=shared.PublicapiEventFilterOptions(
-        exclude_execution_level=False,
-        exclude_job_level=False,
-        since=857946,
-    ),
-    job_id='9304c616-291f-41ad-b862-54e133c0149e',
-)
-
-res = s.job.pkg_requester_publicapi_events(req)
-
-if res.publicapi_events_response is not None:
-    # handle response
-```
-
-### Parameters
-
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [shared.PublicapiEventsRequest](../../models/shared/publicapieventsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-
-
-### Response
-
-**[operations.PkgRequesterPublicapiEventsResponse](../../models/operations/pkgrequesterpublicapieventsresponse.md)**
-
-
-## pkg_requester_publicapi_list
-
-Returns the first (sorted) #`max_jobs` jobs that belong to the `client_id` passed in the body payload (by default).
-If `return_all` is set to true, it returns all jobs on the Bacalhau network.
-
-If `id` is set, it returns only the job with that ID.
-
-### Example Usage
-
-```python
-import test_bac
-from test_bac.models import shared
-
-s = test_bac.TestBac()
-
-req = shared.PublicapiListRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-    exclude_tags=[
-        'illum',
-        'vel',
-        'error',
-    ],
-    id='9304c616-291f-41ad-b862-54e133c0149e',
-    include_tags=[
-        'suscipit',
-        'iure',
-        'magnam',
-    ],
-    max_jobs=10,
-    return_all=False,
-    sort_by='created_at',
-    sort_reverse=False,
-)
-
-res = s.job.pkg_requester_publicapi_list(req)
-
-if res.publicapi_list_response is not None:
-    # handle response
-```
-
-### Parameters
-
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [shared.PublicapiListRequest](../../models/shared/publicapilistrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-
-
-### Response
-
-**[operations.PkgRequesterPublicapiListResponse](../../models/operations/pkgrequesterpublicapilistresponse.md)**
-
-
-## pkg_requester_publicapi_logs
-
-Shows the output from the job specified by `id` as long as that job belongs to `client_id`.
-
-The ouput will be continuous until either, the client disconnects or the execution completes.
-
-### Example Usage
-
-```python
-import test_bac
-from test_bac.models import shared
-
-s = test_bac.TestBac()
-
-req = shared.PublicapiLogRequest(
-    client_public_key='debitis',
-    payload=shared.ModelLogsPayload(
-        client_id='ipsa',
-        execution_id='delectus',
-        follow=False,
-        job_id='tempora',
-        with_history=False,
-    ),
-    signature='suscipit',
-)
-
-res = s.job.pkg_requester_publicapi_logs(req)
-
-if res.pkg_requester_publicapi_logs_200_application_json_string is not None:
-    # handle response
-```
-
-### Parameters
-
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [shared.PublicapiLogRequest](../../models/shared/publicapilogrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-
-
-### Response
-
-**[operations.PkgRequesterPublicapiLogsResponse](../../models/operations/pkgrequesterpublicapilogsresponse.md)**
-
-
-## pkg_requester_publicapi_results
-
-Example response:
-
-```json
-{
-  "results": [
-    {
-      "NodeID": "QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL",
-      "Data": {
-        "StorageSource": "IPFS",
-        "Name": "job-9304c616-291f-41ad-b862-54e133c0149e-shard-0-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL",
-        "CID": "QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe"
-      }
-    }
-  ]
-}
-```
-
-### Example Usage
-
-```python
-import test_bac
-from test_bac.models import shared
-
-s = test_bac.TestBac()
-
-req = shared.PublicapiStateRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-    job_id='9304c616-291f-41ad-b862-54e133c0149e',
-)
-
-res = s.job.pkg_requester_publicapi_results(req)
-
-if res.publicapi_results_response is not None:
-    # handle response
-```
-
-### Parameters
-
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [shared.PublicapiStateRequest](../../models/shared/publicapistaterequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-
-
-### Response
-
-**[operations.PkgRequesterPublicapiResultsResponse](../../models/operations/pkgrequesterpublicapiresultsresponse.md)**
-
-
-## pkg_requester_publicapi_states
-
-Example response:
-
-```json
-{
-  "state": {
-    "Nodes": {
-      "QmSyJ8VUd4YSPwZFJSJsHmmmmg7sd4BAc2yHY73nisJo86": {
-        "Shards": {
-          "0": {
-            "NodeId": "QmSyJ8VUd4YSPwZFJSJsHmmmmg7sd4BAc2yHY73nisJo86",
-            "State": "Cancelled",
-            "VerificationResult": {},
-            "PublishedResults": {}
-          }
-        }
-      },
-      "QmYgxZiySj3MRkwLSL4X2MF5F9f2PMhAE3LV49XkfNL1o3": {
-        "Shards": {
-          "0": {
-            "NodeId": "QmYgxZiySj3MRkwLSL4X2MF5F9f2PMhAE3LV49XkfNL1o3",
-            "State": "Cancelled",
-            "VerificationResult": {},
-            "PublishedResults": {}
-          }
-        }
-      },
-      "QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL": {
-        "Shards": {
-          "0": {
-            "NodeId": "QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL",
-            "State": "Completed",
-            "Status": "Got results proposal of length: 0",
-            "VerificationResult": {
-              "Complete": true,
-              "Result": true
-            },
-            "PublishedResults": {
-              "StorageSource": "IPFS",
-              "Name": "job-9304c616-291f-41ad-b862-54e133c0149e-shard-0-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL",
-              "CID": "QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe"
-            },
-            "RunOutput": {
-              "stdout": "Thu Nov 17 13:32:55 UTC 2022\n",
-              "stdouttruncated": false,
-              "stderr": "",
-              "stderrtruncated": false,
-              "exitCode": 0,
-              "runnerError": ""
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-### Example Usage
-
-```python
-import test_bac
-from test_bac.models import shared
-
-s = test_bac.TestBac()
-
-req = shared.PublicapiStateRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-    job_id='9304c616-291f-41ad-b862-54e133c0149e',
-)
-
-res = s.job.pkg_requester_publicapi_states(req)
-
-if res.publicapi_state_response is not None:
-    # handle response
-```
-
-### Parameters
-
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [shared.PublicapiStateRequest](../../models/shared/publicapistaterequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-
-
-### Response
-
-**[operations.PkgRequesterPublicapiStatesResponse](../../models/operations/pkgrequesterpublicapistatesresponse.md)**
-
-
-## pkg_requester_publicapi_submit
+## submit
 
 Description:
 
@@ -349,331 +93,219 @@ from test_bac.models import shared
 
 s = test_bac.TestBac()
 
-req = shared.PublicapiSubmitRequest(
-    client_public_key='molestiae',
-    payload=shared.ModelJobCreatePayload(
+req = shared.SubmitRequest(
+    client_public_key='nulla',
+    payload=shared.JobCreatePayload(
         api_version='V1beta1',
-        client_id='minus',
-        spec=shared.ModelSpec(
+        client_id='corrupti',
+        spec=shared.Spec(
             annotations=[
-                'voluptatum',
-                'iusto',
-                'excepturi',
-                'nisi',
+                'vel',
+                'error',
+                'deserunt',
+                'suscipit',
             ],
-            deal=shared.ModelDeal(
-                concurrency=925597,
+            deal=shared.Deal(
+                concurrency=437587,
                 targeting_mode=False,
             ),
             do_not_track=False,
-            docker=shared.ModelJobSpecDocker(
+            docker=shared.JobSpecDocker(
                 entrypoint=[
-                    'ab',
-                    'quis',
-                    'veritatis',
-                    'deserunt',
+                    'debitis',
+                    'ipsa',
                 ],
                 environment_variables=[
-                    'ipsam',
+                    'tempora',
+                    'suscipit',
+                    'molestiae',
+                    'minus',
                 ],
-                image='repellendus',
+                image='placeat',
                 parameters=[
-                    'quo',
-                    'odit',
-                    'at',
-                    'at',
+                    'iusto',
+                    'excepturi',
+                    'nisi',
                 ],
-                working_directory='maiores',
+                working_directory='recusandae',
             ),
-            engine=shared.ModelEngine.TWO,
+            engine=shared.Engine.FOUR,
             inputs=[
-                shared.ModelStorageSpec(
+                shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "esse": 'totam',
-                        "porro": 'dolorum',
-                        "dicta": 'nam',
-                        "officia": 'occaecati',
+                        "veritatis": 'deserunt',
+                        "perferendis": 'ipsam',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='fugit',
-                    read_write=False,
-                    repo='deleniti',
-                    s3=shared.ModelS3StorageSpec(
-                        bucket='hic',
-                        checksum='optio',
-                        endpoint='totam',
-                        key='beatae',
-                        region='commodi',
-                        version_id='molestiae',
-                    ),
-                    source_path='modi',
-                    storage_source=shared.ModelStorageSourceType.ONE,
-                    url='impedit',
-                ),
-                shared.ModelStorageSpec(
-                    cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                    metadata={
-                        "esse": 'ipsum',
-                        "excepturi": 'aspernatur',
-                        "perferendis": 'ad',
-                    },
-                    name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='natus',
-                    read_write=False,
-                    repo='sed',
-                    s3=shared.ModelS3StorageSpec(
-                        bucket='iste',
-                        checksum='dolor',
-                        endpoint='natus',
-                        key='laboriosam',
-                        region='hic',
-                        version_id='saepe',
-                    ),
-                    source_path='fuga',
-                    storage_source=shared.ModelStorageSourceType.FOUR,
-                    url='corporis',
-                ),
-                shared.ModelStorageSpec(
-                    cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                    metadata={
-                        "iure": 'saepe',
-                        "quidem": 'architecto',
-                        "ipsa": 'reiciendis',
-                    },
-                    name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='est',
-                    read_write=False,
-                    repo='mollitia',
-                    s3=shared.ModelS3StorageSpec(
-                        bucket='laborum',
-                        checksum='dolores',
-                        endpoint='dolorem',
-                        key='corporis',
-                        region='explicabo',
-                        version_id='nobis',
-                    ),
-                    source_path='enim',
-                    storage_source=shared.ModelStorageSourceType.SIX,
-                    url='nemo',
-                ),
-                shared.ModelStorageSpec(
-                    cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                    metadata={
-                        "excepturi": 'accusantium',
-                        "iure": 'culpa',
-                    },
-                    name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='doloribus',
+                    path='repellendus',
                     read_write=False,
                     repo='sapiente',
-                    s3=shared.ModelS3StorageSpec(
-                        bucket='architecto',
-                        checksum='mollitia',
-                        endpoint='dolorem',
-                        key='culpa',
-                        region='consequuntur',
-                        version_id='repellat',
+                    s3=shared.S3StorageSpec(
+                        bucket='quo',
+                        checksum='odit',
+                        endpoint='at',
+                        key='at',
+                        region='maiores',
+                        version_id='molestiae',
                     ),
-                    source_path='mollitia',
-                    storage_source=shared.ModelStorageSourceType.FIVE,
-                    url='numquam',
+                    source_path='quod',
+                    storage_source=shared.StorageSourceType.EIGHT,
+                    url='esse',
                 ),
             ],
-            network=shared.ModelNetworkConfig(
+            network=shared.NetworkConfig(
                 domains=[
-                    'quam',
-                    'molestiae',
+                    'porro',
+                    'dolorum',
+                    'dicta',
                 ],
-                type=shared.ModelNetwork.ZERO,
+                type=shared.Network.TWO,
             ),
             node_selectors=[
-                shared.ModelLabelSelectorRequirement(
-                    key='quia',
+                shared.LabelSelectorRequirement(
+                    key='occaecati',
+                    operator=shared.SelectionOperator.EQUAL_,
+                    values=[
+                        'hic',
+                        'optio',
+                        'totam',
+                    ],
+                ),
+                shared.LabelSelectorRequirement(
+                    key='beatae',
                     operator=shared.SelectionOperator.IN,
                     values=[
-                        'laborum',
+                        'modi',
+                        'qui',
                     ],
                 ),
-                shared.ModelLabelSelectorRequirement(
-                    key='animi',
-                    operator=shared.SelectionOperator.EQUAL_EQUAL_,
+                shared.LabelSelectorRequirement(
+                    key='impedit',
+                    operator=shared.SelectionOperator.EXISTS,
                     values=[
-                        'quo',
-                    ],
-                ),
-                shared.ModelLabelSelectorRequirement(
-                    key='sequi',
-                    operator=shared.SelectionOperator.LT,
-                    values=[
-                        'id',
-                        'possimus',
+                        'ipsum',
+                        'excepturi',
                     ],
                 ),
             ],
             outputs=[
-                shared.ModelStorageSpec(
+                shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "error": 'temporibus',
+                        "ad": 'natus',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='laborum',
+                    path='sed',
                     read_write=False,
-                    repo='quasi',
-                    s3=shared.ModelS3StorageSpec(
-                        bucket='reiciendis',
-                        checksum='voluptatibus',
-                        endpoint='vero',
-                        key='nihil',
-                        region='praesentium',
-                        version_id='voluptatibus',
+                    repo='iste',
+                    s3=shared.S3StorageSpec(
+                        bucket='dolor',
+                        checksum='natus',
+                        endpoint='laboriosam',
+                        key='hic',
+                        region='saepe',
+                        version_id='fuga',
                     ),
-                    source_path='ipsa',
-                    storage_source=shared.ModelStorageSourceType.SIX,
-                    url='voluptate',
+                    source_path='in',
+                    storage_source=shared.StorageSourceType.THREE,
+                    url='iste',
                 ),
             ],
-            publisher=shared.ModelPublisher.FOUR,
-            publisher_spec=shared.ModelPublisherSpec(
+            publisher=shared.Publisher.TWO,
+            publisher_spec=shared.PublisherSpec(
                 params={
-                    "doloremque": 'reprehenderit',
+                    "quidem": 'architecto',
+                    "ipsa": 'reiciendis',
+                    "est": 'mollitia',
+                    "laborum": 'dolores',
                 },
-                type=shared.ModelPublisher.ONE,
+                type=shared.Publisher.ONE,
             ),
-            resources=shared.ModelResourceUsageConfig(
-                cpu='maiores',
-                disk='dicta',
-                gpu='corporis',
-                memory='dolore',
+            resources=shared.ResourceUsageConfig(
+                cpu='corporis',
+                disk='explicabo',
+                gpu='nobis',
+                memory='enim',
             ),
-            timeout=480894,
-            wasm=shared.ModelJobSpecWasm(
-                entry_module=shared.ModelStorageSpec(
+            timeout=607831,
+            wasm=shared.JobSpecWasm(
+                entry_module=shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "harum": 'enim',
+                        "minima": 'excepturi',
+                        "accusantium": 'iure',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='accusamus',
+                    path='culpa',
                     read_write=False,
-                    repo='commodi',
-                    s3=shared.ModelS3StorageSpec(
-                        bucket='repudiandae',
-                        checksum='quae',
-                        endpoint='ipsum',
-                        key='quidem',
-                        region='molestias',
-                        version_id='excepturi',
+                    repo='doloribus',
+                    s3=shared.S3StorageSpec(
+                        bucket='sapiente',
+                        checksum='architecto',
+                        endpoint='mollitia',
+                        key='dolorem',
+                        region='culpa',
+                        version_id='consequuntur',
                     ),
-                    source_path='pariatur',
-                    storage_source=shared.ModelStorageSourceType.TWO,
-                    url='praesentium',
+                    source_path='repellat',
+                    storage_source=shared.StorageSourceType.SIX,
+                    url='occaecati',
                 ),
-                entry_point='rem',
+                entry_point='numquam',
                 environment_variables={
-                    "quasi": 'repudiandae',
-                    "sint": 'veritatis',
-                    "itaque": 'incidunt',
-                    "enim": 'consequatur',
+                    "quam": 'molestiae',
+                    "velit": 'error',
                 },
                 import_modules=[
-                    shared.ModelStorageSpec(
+                    shared.StorageSpec(
                         cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                         metadata={
-                            "explicabo": 'deserunt',
-                            "distinctio": 'quibusdam',
-                            "labore": 'modi',
-                            "qui": 'aliquid',
+                            "vitae": 'laborum',
+                            "animi": 'enim',
                         },
                         name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                        path='cupiditate',
+                        path='odit',
                         read_write=False,
-                        repo='quos',
-                        s3=shared.ModelS3StorageSpec(
-                            bucket='perferendis',
-                            checksum='magni',
-                            endpoint='assumenda',
-                            key='ipsam',
-                            region='alias',
-                            version_id='fugit',
+                        repo='quo',
+                        s3=shared.S3StorageSpec(
+                            bucket='sequi',
+                            checksum='tenetur',
+                            endpoint='ipsam',
+                            key='id',
+                            region='possimus',
+                            version_id='aut',
                         ),
-                        source_path='dolorum',
-                        storage_source=shared.ModelStorageSourceType.FIVE,
-                        url='tempora',
-                    ),
-                    shared.ModelStorageSpec(
-                        cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                        metadata={
-                            "tempore": 'labore',
-                            "delectus": 'eum',
-                            "non": 'eligendi',
-                        },
-                        name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                        path='sint',
-                        read_write=False,
-                        repo='aliquid',
-                        s3=shared.ModelS3StorageSpec(
-                            bucket='provident',
-                            checksum='necessitatibus',
-                            endpoint='sint',
-                            key='officia',
-                            region='dolor',
-                            version_id='debitis',
-                        ),
-                        source_path='a',
-                        storage_source=shared.ModelStorageSourceType.SIX,
-                        url='in',
-                    ),
-                    shared.ModelStorageSpec(
-                        cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                        metadata={
-                            "illum": 'maiores',
-                            "rerum": 'dicta',
-                        },
-                        name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                        path='magnam',
-                        read_write=False,
-                        repo='cumque',
-                        s3=shared.ModelS3StorageSpec(
-                            bucket='facere',
-                            checksum='ea',
-                            endpoint='aliquid',
-                            key='laborum',
-                            region='accusamus',
-                            version_id='non',
-                        ),
-                        source_path='occaecati',
-                        storage_source=shared.ModelStorageSourceType.THREE,
-                        url='accusamus',
+                        source_path='quasi',
+                        storage_source=shared.StorageSourceType.SIX,
+                        url='temporibus',
                     ),
                 ],
                 parameters=[
-                    'quidem',
-                    'provident',
-                    'nam',
-                    'id',
+                    'quasi',
+                    'reiciendis',
+                    'voluptatibus',
                 ],
             ),
         ),
     ),
-    signature='blanditiis',
+    signature='vero',
 )
 
-res = s.job.pkg_requester_publicapi_submit(req)
+res = s.job.submit(req)
 
-if res.publicapi_submit_response is not None:
+if res.submit_response is not None:
     # handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [shared.PublicapiSubmitRequest](../../models/shared/publicapisubmitrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `request`                                                    | [shared.SubmitRequest](../../models/shared/submitrequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 
 
 ### Response
 
-**[operations.PkgRequesterPublicapiSubmitResponse](../../models/operations/pkgrequesterpublicapisubmitresponse.md)**
+**[operations.SubmitJobResponse](../../models/operations/submitjobresponse.md)**
 

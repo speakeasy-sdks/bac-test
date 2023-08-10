@@ -1,0 +1,12 @@
+# DisplayNodesResponse
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `content_type`                                                                        | *str*                                                                                 | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `internal_server_error`                                                               | [Optional[shared.InternalServerError]](../../models/shared/internalservererror.md)    | :heavy_minus_sign:                                                                    | Internal Server Error                                                                 |
+| `node_infos`                                                                          | list[[shared.NodeInfo](../../models/shared/nodeinfo.md)]                              | :heavy_minus_sign:                                                                    | OK                                                                                    |
+| `status_code`                                                                         | *int*                                                                                 | :heavy_check_mark:                                                                    | N/A                                                                                   |
+| `raw_response`                                                                        | [requests.Response](https://requests.readthedocs.io/en/latest/api/#requests.Response) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

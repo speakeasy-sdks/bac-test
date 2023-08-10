@@ -14,14 +14,17 @@ pip install git+https://github.com/speakeasy-sdks/bac-test.git
 
 ```python
 import test_bac
-
+from test_bac.models import shared
 
 s = test_bac.TestBac()
 
+req = shared.VersionRequest(
+    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
+)
 
-res = s.api_server_approver()
+res = s.build_version.get(req)
 
-if res.api_server_approver_200_application_json_string is not None:
+if res.version_response is not None:
     # handle response
 ```
 <!-- End SDK Example Usage -->
@@ -29,40 +32,80 @@ if res.api_server_approver_200_application_json_string is not None:
 <!-- Start SDK Available Operations -->
 ## Available Resources and Operations
 
-### [TestBac SDK](docs/sdks/testbac/README.md)
 
-* [api_server_approver](docs/sdks/testbac/README.md#api_server_approver) - Approves a job to be run on this compute node.
-* [pkg_requester_publicapi_nodes](docs/sdks/testbac/README.md#pkg_requester_publicapi_nodes) - Displays the nodes that this requester knows about
+### [build_version](docs/sdks/buildversion/README.md)
 
-### [health](docs/sdks/health/README.md)
+* [get](docs/sdks/buildversion/README.md#get) - Returns the build version running on the server.
 
-* [api_server_debug](docs/sdks/health/README.md#api_server_debug) - Returns debug information on what the current node is doing.
-* [pkg_requester_publicapi_debug](docs/sdks/health/README.md#pkg_requester_publicapi_debug) - Returns debug information on what the current node is doing.
+### [connected_peers](docs/sdks/connectedpeers/README.md)
+
+* [get](docs/sdks/connectedpeers/README.md#get) - Returns the peers connected to the host via the transport layer.
+
+### [debug](docs/sdks/debug/README.md)
+
+* [get](docs/sdks/debug/README.md#get) - Returns debug information on what the current node is doing.
+
+### [healthz](docs/sdks/healthz/README.md)
+
+* [get](docs/sdks/healthz/README.md#get)
+
+### [host_node_id](docs/sdks/hostnodeid/README.md)
+
+* [get](docs/sdks/hostnodeid/README.md#get) - Returns the id of the host node.
 
 ### [job](docs/sdks/job/README.md)
 
-* [pkg_requester_publicapi_cancel](docs/sdks/job/README.md#pkg_requester_publicapi_cancel) - Cancels the job with the job-id specified in the body payload.
-* [pkg_requester_publicapi_events](docs/sdks/job/README.md#pkg_requester_publicapi_events) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
-* [pkg_requester_publicapi_list](docs/sdks/job/README.md#pkg_requester_publicapi_list) - Simply lists jobs.
-* [pkg_requester_publicapi_logs](docs/sdks/job/README.md#pkg_requester_publicapi_logs) - Displays the logs for a current job/execution
-* [pkg_requester_publicapi_results](docs/sdks/job/README.md#pkg_requester_publicapi_results) - Returns the results of the job-id specified in the body payload.
-* [pkg_requester_publicapi_states](docs/sdks/job/README.md#pkg_requester_publicapi_states) - Returns the state of the job-id specified in the body payload.
-* [pkg_requester_publicapi_submit](docs/sdks/job/README.md#pkg_requester_publicapi_submit) - Submits a new job to the network.
+* [approve](docs/sdks/job/README.md#approve) - Approves a job to be run on this compute node.
+* [cancel](docs/sdks/job/README.md#cancel) - Cancels the job with the job-id specified in the body payload.
+* [submit](docs/sdks/job/README.md#submit) - Submits a new job to the network.
 
-### [misc](docs/sdks/misc/README.md)
+### [job_events](docs/sdks/jobevents/README.md)
 
-* [api_server_version](docs/sdks/misc/README.md#api_server_version) - Returns the build version running on the server.
+* [get](docs/sdks/jobevents/README.md#get) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
 
-### [utils](docs/sdks/utils/README.md)
+### [job_logs](docs/sdks/joblogs/README.md)
 
-* [healthz](docs/sdks/utils/README.md#healthz)
-* [id](docs/sdks/utils/README.md#id) - Returns the id of the host node.
-* [livez](docs/sdks/utils/README.md#livez)
-* [logz](docs/sdks/utils/README.md#logz)
-* [node_info](docs/sdks/utils/README.md#node_info) - Returns the info of the node.
-* [peers](docs/sdks/utils/README.md#peers) - Returns the peers connected to the host via the transport layer.
-* [readyz](docs/sdks/utils/README.md#readyz)
-* [varz](docs/sdks/utils/README.md#varz)
+* [display](docs/sdks/joblogs/README.md#display) - Displays the logs for a current job/execution
+
+### [jobs](docs/sdks/jobs/README.md)
+
+* [list](docs/sdks/jobs/README.md#list) - Simply lists jobs.
+
+### [livez](docs/sdks/livez/README.md)
+
+* [get](docs/sdks/livez/README.md#get)
+
+### [logz](docs/sdks/logz/README.md)
+
+* [get](docs/sdks/logz/README.md#get)
+
+### [node_info](docs/sdks/nodeinfo/README.md)
+
+* [get](docs/sdks/nodeinfo/README.md#get) - Returns the info of the node.
+
+### [nodes](docs/sdks/nodes/README.md)
+
+* [display](docs/sdks/nodes/README.md#display) - Displays the nodes that this requester knows about
+
+### [readyz](docs/sdks/readyz/README.md)
+
+* [get](docs/sdks/readyz/README.md#get)
+
+### [requester_debug](docs/sdks/requesterdebug/README.md)
+
+* [get](docs/sdks/requesterdebug/README.md#get) - Returns debug information on what the current node is doing.
+
+### [results](docs/sdks/results/README.md)
+
+* [get](docs/sdks/results/README.md#get) - Returns the results of the job-id specified in the body payload.
+
+### [states](docs/sdks/states/README.md)
+
+* [get](docs/sdks/states/README.md#get) - Returns the state of the job-id specified in the body payload.
+
+### [varz](docs/sdks/varz/README.md)
+
+* [get](docs/sdks/varz/README.md#get)
 <!-- End SDK Available Operations -->
 
 ### Maturity
