@@ -13,10 +13,10 @@ Approves a job to be run on this compute node.
 ### Example Usage
 
 ```python
-import test_bac
+import bac
 
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 
 res = s.job.approve()
@@ -40,10 +40,10 @@ Returns the current jobstate after the cancel request has been processed.
 ### Example Usage
 
 ```python
-import test_bac
-from test_bac.models import shared
+import bac
+from bac.models import shared
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 req = shared.CancelRequest(
     client_public_key='corrupti',
@@ -88,10 +88,10 @@ Description:
 ### Example Usage
 
 ```python
-import test_bac
-from test_bac.models import shared
+import bac
+from bac.models import shared
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 req = shared.SubmitRequest(
     client_public_key='nulla',

@@ -11,10 +11,10 @@ Displays the nodes that this requester knows about
 ### Example Usage
 
 ```python
-import test_bac
+import bac
 
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 
 res = s.nodes.display()

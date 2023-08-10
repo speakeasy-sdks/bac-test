@@ -11,10 +11,10 @@ Returns debug information on what the current node is doing.
 ### Example Usage
 
 ```python
-import test_bac
+import bac
 
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 
 res = s.debug.get()

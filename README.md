@@ -13,10 +13,10 @@ pip install git+https://github.com/speakeasy-sdks/bac-test.git
 
 
 ```python
-import test_bac
-from test_bac.models import shared
+import bac
+from bac.models import shared
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 req = shared.VersionRequest(
     client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',

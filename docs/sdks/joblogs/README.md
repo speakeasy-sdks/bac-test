@@ -13,10 +13,10 @@ The ouput will be continuous until either, the client disconnects or the executi
 ### Example Usage
 
 ```python
-import test_bac
-from test_bac.models import shared
+import bac
+from bac.models import shared
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 req = shared.LogRequest(
     client_public_key='praesentium',

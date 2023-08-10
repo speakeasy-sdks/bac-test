@@ -9,10 +9,10 @@
 ### Example Usage
 
 ```python
-import test_bac
+import bac
 
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 
 res = s.readyz.get()

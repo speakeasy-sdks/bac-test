@@ -24,10 +24,10 @@ Example response:
 ### Example Usage
 
 ```python
-import test_bac
+import bac
 
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 
 res = s.connected_peers.get()

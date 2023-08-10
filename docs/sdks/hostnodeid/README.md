@@ -11,10 +11,10 @@ Returns the id of the host node.
 ### Example Usage
 
 ```python
-import test_bac
+import bac
 
 
-s = test_bac.TestBac()
+s = bac.Bac()
 
 
 res = s.host_node_id.get()
