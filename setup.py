@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="bac-test",
-    version="0.4.0",
+    version="0.5.0",
     author="team-ws",
     description="Python Client SDK for Bac API",
     long_description=long_description,

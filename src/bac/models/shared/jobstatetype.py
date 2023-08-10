@@ -4,10 +4,10 @@ from __future__ import annotations
 from enum import Enum
 
 class JobStateType(int, Enum):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
-    SIX = 6
+    JOB_STATE_UNDEFINED = 0
+    JOB_STATE_NEW = 1
+    JOB_STATE_IN_PROGRESS = 2
+    JOB_STATE_CANCELLED = 3
+    JOB_STATE_ERROR = 4
+    JOB_STATE_COMPLETED = 5
+    JOB_STATE_QUEUED = 6

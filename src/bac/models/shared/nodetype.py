@@ -4,5 +4,5 @@ from __future__ import annotations
 from enum import Enum
 
 class NodeType(int, Enum):
-    ZERO = 0
-    ONE = 1
+    NODE_TYPE_REQUESTER = 0
+    NODE_TYPE_COMPUTE = 1

@@ -4,9 +4,9 @@ from __future__ import annotations
 from enum import Enum
 
 class Publisher(int, Enum):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
+    PUBLISHER_UNKNOWN = 0
+    PUBLISHER_NOOP = 1
+    PUBLISHER_IPFS = 2
+    PUBLISHER_ESTUARY = 3
+    PUBLISHER_S3 = 4
+    PUBLISHER_DONE = 5

@@ -129,7 +129,7 @@ req = shared.SubmitRequest(
                 ],
                 working_directory='recusandae',
             ),
-            engine=shared.Engine.FOUR,
+            engine=shared.Engine.ENGINE_DONE,
             inputs=[
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
@@ -150,7 +150,7 @@ req = shared.SubmitRequest(
                         version_id='molestiae',
                     ),
                     source_path='quod',
-                    storage_source=shared.StorageSourceType.EIGHT,
+                    storage_source=shared.StorageSourceType.STORAGE_SOURCE_S3,
                     url='esse',
                 ),
             ],
@@ -160,12 +160,12 @@ req = shared.SubmitRequest(
                     'dolorum',
                     'dicta',
                 ],
-                type=shared.Network.TWO,
+                type=shared.Network.NETWORK_HTTP,
             ),
             node_selectors=[
                 shared.LabelSelectorRequirement(
                     key='occaecati',
-                    operator=shared.SelectionOperator.EQUAL_,
+                    operator=shared.SelectionOperator.EQUALS,
                     values=[
                         'hic',
                         'optio',
@@ -208,11 +208,11 @@ req = shared.SubmitRequest(
                         version_id='fuga',
                     ),
                     source_path='in',
-                    storage_source=shared.StorageSourceType.THREE,
+                    storage_source=shared.StorageSourceType.STORAGE_SOURCE_REPO_CLONE_LFS,
                     url='iste',
                 ),
             ],
-            publisher=shared.Publisher.TWO,
+            publisher=shared.Publisher.PUBLISHER_IPFS,
             publisher_spec=shared.PublisherSpec(
                 params={
                     "quidem": 'architecto',
@@ -220,7 +220,7 @@ req = shared.SubmitRequest(
                     "est": 'mollitia',
                     "laborum": 'dolores',
                 },
-                type=shared.Publisher.ONE,
+                type=shared.Publisher.PUBLISHER_NOOP,
             ),
             resources=shared.ResourceUsageConfig(
                 cpu='corporis',
@@ -249,7 +249,7 @@ req = shared.SubmitRequest(
                         version_id='consequuntur',
                     ),
                     source_path='repellat',
-                    storage_source=shared.StorageSourceType.SIX,
+                    storage_source=shared.StorageSourceType.STORAGE_SOURCE_INLINE,
                     url='occaecati',
                 ),
                 entry_point='numquam',
@@ -277,7 +277,7 @@ req = shared.SubmitRequest(
                             version_id='aut',
                         ),
                         source_path='quasi',
-                        storage_source=shared.StorageSourceType.SIX,
+                        storage_source=shared.StorageSourceType.STORAGE_SOURCE_INLINE,
                         url='temporibus',
                     ),
                 ],

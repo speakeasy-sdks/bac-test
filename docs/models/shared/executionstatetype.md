@@ -3,15 +3,15 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `ZERO`  | 0       |
-| `ONE`   | 1       |
-| `TWO`   | 2       |
-| `THREE` | 3       |
-| `FOUR`  | 4       |
-| `FIVE`  | 5       |
-| `SIX`   | 6       |
-| `SEVEN` | 7       |
-| `EIGHT` | 8       |
-| `NINE`  | 9       |
+| Name                                   | Value                                  |
+| -------------------------------------- | -------------------------------------- |
+| `EXECUTION_STATE_UNDEFINED`            | 0                                      |
+| `EXECUTION_STATE_NEW`                  | 1                                      |
+| `EXECUTION_STATE_ASK_FOR_BID`          | 2                                      |
+| `EXECUTION_STATE_ASK_FOR_BID_ACCEPTED` | 3                                      |
+| `EXECUTION_STATE_ASK_FOR_BID_REJECTED` | 4                                      |
+| `EXECUTION_STATE_BID_ACCEPTED`         | 5                                      |
+| `EXECUTION_STATE_BID_REJECTED`         | 6                                      |
+| `EXECUTION_STATE_COMPLETED`            | 7                                      |
+| `EXECUTION_STATE_FAILED`               | 8                                      |
+| `EXECUTION_STATE_CANCELLED`            | 9                                      |

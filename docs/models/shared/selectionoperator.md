@@ -3,14 +3,14 @@
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `NOT_`         | !              |
-| `EQUAL_`       | =              |
-| `EQUAL_EQUAL_` | ==             |
-| `IN`           | in             |
-| `NOT_EQUAL_`   | !=             |
-| `NOTIN`        | notin          |
-| `EXISTS`       | exists         |
-| `GT`           | gt             |
-| `LT`           | lt             |
+| Name             | Value            |
+| ---------------- | ---------------- |
+| `DOES_NOT_EXIST` | !                |
+| `EQUALS`         | =                |
+| `DOUBLE_EQUALS`  | ==               |
+| `IN`             | in               |
+| `NOT_EQUALS`     | !=               |
+| `NOT_IN`         | notin            |
+| `EXISTS`         | exists           |
+| `GREATER_THAN`   | gt               |
+| `LESS_THAN`      | lt               |

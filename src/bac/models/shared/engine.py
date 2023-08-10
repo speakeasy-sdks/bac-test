@@ -4,8 +4,8 @@ from __future__ import annotations
 from enum import Enum
 
 class Engine(int, Enum):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
+    ENGINE_UNKNOWN = 0
+    ENGINE_NOOP = 1
+    ENGINE_DOCKER = 2
+    ENGINE_WASM = 3
+    ENGINE_DONE = 4

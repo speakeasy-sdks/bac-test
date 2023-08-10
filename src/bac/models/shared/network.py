@@ -4,6 +4,6 @@ from __future__ import annotations
 from enum import Enum
 
 class Network(int, Enum):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
+    NETWORK_NONE = 0
+    NETWORK_FULL = 1
+    NETWORK_HTTP = 2

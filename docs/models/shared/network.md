@@ -3,8 +3,8 @@
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `ZERO` | 0      |
-| `ONE`  | 1      |
-| `TWO`  | 2      |
+| Name           | Value          |
+| -------------- | -------------- |
+| `NETWORK_NONE` | 0              |
+| `NETWORK_FULL` | 1              |
+| `NETWORK_HTTP` | 2              |

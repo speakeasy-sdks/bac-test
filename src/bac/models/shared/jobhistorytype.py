@@ -4,6 +4,6 @@ from __future__ import annotations
 from enum import Enum
 
 class JobHistoryType(int, Enum):
-    ZERO = 0
-    ONE = 1
-    TWO = 2
+    JOB_HISTORY_TYPE_UNDEFINED = 0
+    JOB_HISTORY_TYPE_JOB_LEVEL = 1
+    JOB_HISTORY_TYPE_EXECUTION_LEVEL = 2

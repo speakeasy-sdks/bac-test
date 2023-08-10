@@ -3,7 +3,7 @@
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `ZERO` | 0      |
-| `ONE`  | 1      |
+| Name                  | Value                 |
+| --------------------- | --------------------- |
+| `NODE_TYPE_REQUESTER` | 0                     |
+| `NODE_TYPE_COMPUTE`   | 1                     |

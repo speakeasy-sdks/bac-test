@@ -3,15 +3,15 @@
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `ZERO`  | 0       |
-| `ONE`   | 1       |
-| `TWO`   | 2       |
-| `THREE` | 3       |
-| `FOUR`  | 4       |
-| `FIVE`  | 5       |
-| `SIX`   | 6       |
-| `SEVEN` | 7       |
-| `EIGHT` | 8       |
-| `NINE`  | 9       |
+| Name                             | Value                            |
+| -------------------------------- | -------------------------------- |
+| `STORAGE_SOURCE_UNKNOWN`         | 0                                |
+| `STORAGE_SOURCE_IPFS`            | 1                                |
+| `STORAGE_SOURCE_REPO_CLONE`      | 2                                |
+| `STORAGE_SOURCE_REPO_CLONE_LFS`  | 3                                |
+| `STORAGE_SOURCE_URL_DOWNLOAD`    | 4                                |
+| `STORAGE_SOURCE_ESTUARY`         | 5                                |
+| `STORAGE_SOURCE_INLINE`          | 6                                |
+| `STORAGE_SOURCE_LOCAL_DIRECTORY` | 7                                |
+| `STORAGE_SOURCE_S3`              | 8                                |
+| `STORAGE_SOURCE_DONE`            | 9                                |

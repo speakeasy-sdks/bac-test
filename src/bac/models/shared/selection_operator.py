@@ -4,12 +4,12 @@ from __future__ import annotations
 from enum import Enum
 
 class SelectionOperator(str, Enum):
-    NOT_ = '!'
-    EQUAL_ = '='
-    EQUAL_EQUAL_ = '=='
+    DOES_NOT_EXIST = '!'
+    EQUALS = '='
+    DOUBLE_EQUALS = '=='
     IN = 'in'
-    NOT_EQUAL_ = '!='
-    NOTIN = 'notin'
+    NOT_EQUALS = '!='
+    NOT_IN = 'notin'
     EXISTS = 'exists'
-    GT = 'gt'
-    LT = 'lt'
+    GREATER_THAN = 'gt'
+    LESS_THAN = 'lt'
