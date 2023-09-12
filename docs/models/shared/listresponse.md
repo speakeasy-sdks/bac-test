@@ -1,7 +1,5 @@
 # ListResponse
 
-OK
-
 
 ## Fields
 

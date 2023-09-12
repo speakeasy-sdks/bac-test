@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ListResponse:
-    r"""OK"""
     jobs: Optional[list[shared_jobwithinfo.JobWithInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobs'), 'exclude': lambda f: f is None }})
     
 

@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class VersionResponse:
-    r"""OK"""
     build_version_info: Optional[shared_buildversioninfo.BuildVersionInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('build_version_info'), 'exclude': lambda f: f is None }})
     
 

@@ -1,7 +1,5 @@
 # HealthInfo
 
-OK
-
 
 ## Fields
 

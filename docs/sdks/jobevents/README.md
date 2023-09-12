@@ -22,7 +22,7 @@ req = shared.EventsRequest(
     filters=shared.EventFilterOptions(
         exclude_execution_level=False,
         exclude_job_level=False,
-        since=468651,
+        since=60225,
     ),
     job_id='9304c616-291f-41ad-b862-54e133c0149e',
 )

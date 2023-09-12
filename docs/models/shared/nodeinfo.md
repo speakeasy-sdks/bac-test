@@ -1,7 +1,5 @@
 # NodeInfo
 
-OK
-
 
 ## Fields
 

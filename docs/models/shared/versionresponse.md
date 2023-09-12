@@ -1,7 +1,5 @@
 # VersionResponse
 
-OK
-
 
 ## Fields
 

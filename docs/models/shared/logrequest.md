@@ -1,7 +1,5 @@
 # LogRequest
 
- 
-
 
 ## Fields
 

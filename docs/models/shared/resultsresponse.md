@@ -1,7 +1,5 @@
 # ResultsResponse
 
-OK
-
 
 ## Fields
 

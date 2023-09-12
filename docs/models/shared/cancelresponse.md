@@ -1,7 +1,5 @@
 # CancelResponse
 
-OK
-
 
 ## Fields
 

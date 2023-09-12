@@ -1,7 +1,5 @@
 # InternalServerError
 
-Internal Server Error
-
 
 ## Fields
 

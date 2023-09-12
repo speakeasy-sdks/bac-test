@@ -1,7 +1,5 @@
 # ListRequest
 
-Set `return_all` to `true` to return all jobs on the network (may degrade performance, use with care!).
-
 
 ## Fields
 

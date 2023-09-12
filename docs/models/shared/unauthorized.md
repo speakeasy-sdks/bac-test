@@ -1,7 +1,5 @@
 # Unauthorized
 
-Unauthorized
-
 
 ## Fields
 

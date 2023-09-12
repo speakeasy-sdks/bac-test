@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class CancelResponse:
-    r"""OK"""
     state: Optional[shared_jobstate.JobState] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('state'), 'exclude': lambda f: f is None }})
     
 

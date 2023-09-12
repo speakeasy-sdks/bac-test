@@ -1,7 +1,5 @@
 # StateRequest
 
- 
-
 
 ## Fields
 

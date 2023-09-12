@@ -1,7 +1,5 @@
 # SubmitResponse
 
-OK
-
 
 ## Fields
 

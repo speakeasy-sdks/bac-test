@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class EventsResponse:
-    r"""OK"""
     events: Optional[list[shared_jobhistory.JobHistory]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('events'), 'exclude': lambda f: f is None }})
     
 

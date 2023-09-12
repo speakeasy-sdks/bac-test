@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class ResultsResponse:
-    r"""OK"""
     results: Optional[list[shared_publishedresult.PublishedResult]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('results'), 'exclude': lambda f: f is None }})
     
 

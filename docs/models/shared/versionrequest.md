@@ -1,7 +1,5 @@
 # VersionRequest
 
-Request must specify a `client_id`. To retrieve your `client_id`, you can do the following: (1) submit a dummy job to Bacalhau (or use one you created before), (2) run `bacalhau describe <job-id>` and fetch the `ClientID` field.
-
 
 ## Fields
 

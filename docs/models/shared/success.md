@@ -1,7 +1,5 @@
 # Success
 
-OK
-
 
 ## Fields
 

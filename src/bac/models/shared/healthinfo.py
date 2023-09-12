@@ -12,7 +12,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class HealthInfo:
-    r"""OK"""
     free_space: Optional[shared_freespace.FreeSpace] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('FreeSpace'), 'exclude': lambda f: f is None }})
     
 

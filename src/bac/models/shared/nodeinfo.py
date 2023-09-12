@@ -15,7 +15,6 @@ from typing import Optional
 
 @dataclasses.dataclass
 class NodeInfo:
-    r"""OK"""
     bacalhau_version: Optional[shared_buildversioninfo.BuildVersionInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('BacalhauVersion'), 'exclude': lambda f: f is None }})
     compute_node_info: Optional[shared_computenodeinfo.ComputeNodeInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ComputeNodeInfo'), 'exclude': lambda f: f is None }})
     labels: Optional[dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Labels'), 'exclude': lambda f: f is None }})

@@ -1,7 +1,5 @@
 # StateResponse
 
-OK
-
 
 ## Fields
 
