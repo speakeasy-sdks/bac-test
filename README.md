@@ -33,77 +33,77 @@ if res.version_response is not None:
 ## Available Resources and Operations
 
 
-### [build_version](docs/sdks/buildversion/README.md)
+### [BuildVersion](docs/sdks/buildversion/README.md)
 
 * [get](docs/sdks/buildversion/README.md#get) - Returns the build version running on the server.
 
-### [connected_peers](docs/sdks/connectedpeers/README.md)
+### [ConnectedPeers](docs/sdks/connectedpeers/README.md)
 
 * [get](docs/sdks/connectedpeers/README.md#get) - Returns the peers connected to the host via the transport layer.
 
-### [debug](docs/sdks/debug/README.md)
+### [Debug](docs/sdks/debug/README.md)
 
 * [get](docs/sdks/debug/README.md#get) - Returns debug information on what the current node is doing.
 
-### [healthz](docs/sdks/healthz/README.md)
+### [Healthz](docs/sdks/healthz/README.md)
 
 * [get](docs/sdks/healthz/README.md#get)
 
-### [host_node_id](docs/sdks/hostnodeid/README.md)
+### [HostNodeID](docs/sdks/hostnodeid/README.md)
 
 * [get](docs/sdks/hostnodeid/README.md#get) - Returns the id of the host node.
 
-### [job](docs/sdks/job/README.md)
+### [Job](docs/sdks/job/README.md)
 
 * [approve](docs/sdks/job/README.md#approve) - Approves a job to be run on this compute node.
 * [cancel](docs/sdks/job/README.md#cancel) - Cancels the job with the job-id specified in the body payload.
 * [submit](docs/sdks/job/README.md#submit) - Submits a new job to the network.
 
-### [job_events](docs/sdks/jobevents/README.md)
+### [JobEvents](docs/sdks/jobevents/README.md)
 
 * [get](docs/sdks/jobevents/README.md#get) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
 
-### [job_logs](docs/sdks/joblogs/README.md)
+### [JobLogs](docs/sdks/joblogs/README.md)
 
 * [display](docs/sdks/joblogs/README.md#display) - Displays the logs for a current job/execution
 
-### [jobs](docs/sdks/jobs/README.md)
+### [Jobs](docs/sdks/jobs/README.md)
 
 * [list](docs/sdks/jobs/README.md#list) - Simply lists jobs.
 
-### [livez](docs/sdks/livez/README.md)
+### [Livez](docs/sdks/livez/README.md)
 
 * [get](docs/sdks/livez/README.md#get)
 
-### [logz](docs/sdks/logz/README.md)
+### [Logz](docs/sdks/logz/README.md)
 
 * [get](docs/sdks/logz/README.md#get)
 
-### [node_info](docs/sdks/nodeinfo/README.md)
+### [NodeInfo](docs/sdks/nodeinfo/README.md)
 
 * [get](docs/sdks/nodeinfo/README.md#get) - Returns the info of the node.
 
-### [nodes](docs/sdks/nodes/README.md)
+### [Nodes](docs/sdks/nodes/README.md)
 
 * [display](docs/sdks/nodes/README.md#display) - Displays the nodes that this requester knows about
 
-### [readyz](docs/sdks/readyz/README.md)
+### [Readyz](docs/sdks/readyz/README.md)
 
 * [get](docs/sdks/readyz/README.md#get)
 
-### [requester_debug](docs/sdks/requesterdebug/README.md)
+### [RequesterDebug](docs/sdks/requesterdebug/README.md)
 
 * [get](docs/sdks/requesterdebug/README.md#get) - Returns debug information on what the current node is doing.
 
-### [results](docs/sdks/results/README.md)
+### [Results](docs/sdks/results/README.md)
 
 * [get](docs/sdks/results/README.md#get) - Returns the results of the job-id specified in the body payload.
 
-### [states](docs/sdks/states/README.md)
+### [States](docs/sdks/states/README.md)
 
 * [get](docs/sdks/states/README.md#get) - Returns the state of the job-id specified in the body payload.
 
-### [varz](docs/sdks/varz/README.md)
+### [Varz](docs/sdks/varz/README.md)
 
 * [get](docs/sdks/varz/README.md#get)
 <!-- End SDK Available Operations -->

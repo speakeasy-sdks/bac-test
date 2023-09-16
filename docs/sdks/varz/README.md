@@ -1,4 +1,4 @@
-# varz
+# Varz
 
 ### Available Operations
 

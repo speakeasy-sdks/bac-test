@@ -1,4 +1,4 @@
-# node_info
+# NodeInfo
 
 ### Available Operations
 

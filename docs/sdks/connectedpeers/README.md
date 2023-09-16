@@ -1,4 +1,4 @@
-# connected_peers
+# ConnectedPeers
 
 ### Available Operations
 

@@ -1,4 +1,4 @@
-# job_logs
+# JobLogs
 
 ### Available Operations
 

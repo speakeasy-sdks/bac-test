@@ -1,4 +1,4 @@
-# healthz
+# Healthz
 
 ### Available Operations
 

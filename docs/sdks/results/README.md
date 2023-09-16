@@ -1,4 +1,4 @@
-# results
+# Results
 
 ### Available Operations
 

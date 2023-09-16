@@ -1,4 +1,4 @@
-# states
+# States
 
 ### Available Operations
 

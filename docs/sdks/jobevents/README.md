@@ -1,4 +1,4 @@
-# job_events
+# JobEvents
 
 ### Available Operations
 

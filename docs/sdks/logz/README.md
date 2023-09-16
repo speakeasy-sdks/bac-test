@@ -1,4 +1,4 @@
-# logz
+# Logz
 
 ### Available Operations
 

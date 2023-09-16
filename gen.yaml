@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 537b1aa55043f21b45546f608f384bee
   docVersion: ""
-  speakeasyVersion: 1.82.5
-  generationVersion: 2.108.3
+  speakeasyVersion: 1.86.0
+  generationVersion: 2.115.2
 generation:
   comments:
     disableComments: false
@@ -14,13 +14,13 @@ generation:
   tagNamespacingDisabled: false
 features:
   python:
-    core: 2.85.4
+    core: 2.85.5
     enums: 2.81.1
     globalServerURLs: 2.82.0
     groups: 2.81.1
     nameOverrides: 2.81.1
 python:
-  version: 0.9.3
+  version: 0.9.4
   author: team-ws
   description: Python Client SDK for Bac API
   maxMethodParams: 4

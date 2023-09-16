@@ -1,4 +1,4 @@
-# host_node_id
+# HostNodeID
 
 ### Available Operations
 

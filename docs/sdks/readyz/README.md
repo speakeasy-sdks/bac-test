@@ -1,4 +1,4 @@
-# readyz
+# Readyz
 
 ### Available Operations
 
