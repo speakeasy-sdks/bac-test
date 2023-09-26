@@ -13,12 +13,15 @@ from typing import Optional
 @dataclasses.dataclass
 class SubmitJobResponse:
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     bad_request: Optional[shared_badrequest.BadRequest] = dataclasses.field(default=None)
     r"""Bad Request"""
     internal_server_error: Optional[shared_internalservererror.InternalServerError] = dataclasses.field(default=None)
     r"""Internal Server Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     submit_response: Optional[shared_submitresponse.SubmitResponse] = dataclasses.field(default=None)
     r"""OK"""
     
