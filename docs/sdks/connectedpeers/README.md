@@ -1,4 +1,5 @@
 # ConnectedPeers
+(*connected_peers*)
 
 ### Available Operations
 
