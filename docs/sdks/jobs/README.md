@@ -23,11 +23,11 @@ s = bac.Bac()
 req = shared.ListRequest(
     client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
     exclude_tags=[
-        'dolorem',
+        'Bicycle',
     ],
     id='9304c616-291f-41ad-b862-54e133c0149e',
     include_tags=[
-        'corporis',
+        'Metal',
     ],
     max_jobs=10,
     return_all=False,
