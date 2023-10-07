@@ -51,9 +51,8 @@ req = shared.CancelRequest(
     payload=shared.JobCancelPayload(
         client_id='AI East',
         job_id='Northwest',
-        reason='Jersey purple',
     ),
-    signature='climax Bike',
+    signature='Jersey purple',
 )
 
 res = s.job.cancel(req)
@@ -103,60 +102,37 @@ req = shared.SubmitRequest(
             annotations=[
                 'Dollar',
             ],
-            deal=shared.Deal(
-                concurrency=264695,
-                targeting_mode=False,
-            ),
-            do_not_track=False,
+            deal=shared.Deal(),
             docker=shared.JobSpecDocker(
                 entrypoint=[
-                    'alias',
+                    'Steel',
                 ],
                 environment_variables=[
-                    'justly',
-                ],
-                image='https://loremflickr.com/640/480',
-                parameters=[
                     'TLS',
                 ],
-                working_directory='furthermore',
+                parameters=[
+                    'West',
+                ],
             ),
-            engine=shared.Engine.ENGINE_DONE,
             inputs=[
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "qui": 'louse',
+                        "Licensed": 'Shoes',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='/usr/lib',
-                    read_write=False,
-                    repo='Neodymium',
-                    s3=shared.S3StorageSpec(
-                        bucket='blue North lavender',
-                        checksum='intranet',
-                        endpoint='Chair feisty',
-                        key='<key>',
-                        region='temporibus pink',
-                        version_id='jovially circuit',
-                    ),
-                    source_path='utilisation Directives',
-                    storage_source=shared.StorageSourceType.STORAGE_SOURCE_REPO_CLONE,
-                    url='http://essential-accident.com',
+                    s3=shared.S3StorageSpec(),
                 ),
             ],
             network=shared.NetworkConfig(
                 domains=[
-                    'Nora',
+                    'website',
                 ],
-                type=shared.Network.NETWORK_NONE,
             ),
             node_selectors=[
                 shared.LabelSelectorRequirement(
-                    key='<key>',
-                    operator=shared.SelectionOperator.NOT_EQUALS,
                     values=[
-                        'Park',
+                        'calculating',
                     ],
                 ),
             ],
@@ -164,95 +140,47 @@ req = shared.SubmitRequest(
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "recusandae": 'Kansas',
+                        "Southeast": 'synthesizing',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='/var/spool',
-                    read_write=False,
-                    repo='chaplain',
-                    s3=shared.S3StorageSpec(
-                        bucket='floss Creative Washington',
-                        checksum='tractor',
-                        endpoint='Shoes male gee',
-                        key='<key>',
-                        region='North',
-                        version_id='EXE Diesel',
-                    ),
-                    source_path='Hybrid quantify failing',
-                    storage_source=shared.StorageSourceType.STORAGE_SOURCE_INLINE,
-                    url='https://ample-boycott.name',
+                    s3=shared.S3StorageSpec(),
                 ),
             ],
-            publisher=shared.Publisher.PUBLISHER_UNKNOWN,
             publisher_spec=shared.PublisherSpec(
                 params={
-                    "ullam": 'Bahamian',
+                    "blue": 'North',
                 },
-                type=shared.Publisher.PUBLISHER_IPFS,
             ),
-            resources=shared.ResourceUsageConfig(
-                cpu='Accounts Funk',
-                disk='Minivan SUV grey',
-                gpu='Diesel legalise',
-                memory='embrace whoever Awesome',
-            ),
-            timeout=13332,
+            resources=shared.ResourceUsageConfig(),
             wasm=shared.JobSpecWasm(
                 entry_module=shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "mollitia": 'Cargo',
+                        "lavender": 'Berkshire',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    path='/selinux',
-                    read_write=False,
-                    repo='JSON Investor Colorado',
-                    s3=shared.S3StorageSpec(
-                        bucket='whereas exactly',
-                        checksum='transmitter Renton Kids',
-                        endpoint='Representative',
-                        key='<key>',
-                        region='Bespoke Tuna Assistant',
-                        version_id='RAM West East',
-                    ),
-                    source_path='Tools wealthy',
-                    storage_source=shared.StorageSourceType.STORAGE_SOURCE_REPO_CLONE,
-                    url='http://offbeat-eyeglasses.net',
+                    s3=shared.S3StorageSpec(),
                 ),
-                entry_point='Bicycle throughput',
                 environment_variables={
-                    "enim": 'Implementation',
+                    "quantify": 'Chair',
                 },
                 import_modules=[
                     shared.StorageSpec(
                         cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                         metadata={
-                            "natus": 'card',
+                            "feisty": 'Hop',
                         },
                         name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                        path='/private/var',
-                        read_write=False,
-                        repo='Northwest monitoring',
-                        s3=shared.S3StorageSpec(
-                            bucket='North',
-                            checksum='Hills taut',
-                            endpoint='wireless state engage',
-                            key='<key>',
-                            region='error Turkey Bedfordshire',
-                            version_id='Representative',
-                        ),
-                        source_path='bandwidth Analyst orchid',
-                        storage_source=shared.StorageSourceType.STORAGE_SOURCE_IPFS,
-                        url='http://zealous-safeguard.info',
+                        s3=shared.S3StorageSpec(),
                     ),
                 ],
                 parameters=[
-                    'fooey',
+                    'pink',
                 ],
             ),
         ),
     ),
-    signature='fooey',
+    signature='jovially circuit',
 )
 
 res = s.job.submit(req)

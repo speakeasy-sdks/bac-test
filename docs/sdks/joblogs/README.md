@@ -24,9 +24,7 @@ req = shared.LogRequest(
     payload=shared.LogsPayload(
         client_id='Sports DRAM Inlet',
         execution_id='Hybrid Small Diesel',
-        follow=False,
         job_id='maximized Crew lux',
-        with_history=False,
     ),
     signature='person male etch',
 )

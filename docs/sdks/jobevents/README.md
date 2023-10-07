@@ -20,11 +20,7 @@ s = bac.Bac()
 
 req = shared.EventsRequest(
     client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-    filters=shared.EventFilterOptions(
-        exclude_execution_level=False,
-        exclude_job_level=False,
-        since=700347,
-    ),
+    filters=shared.EventFilterOptions(),
     job_id='9304c616-291f-41ad-b862-54e133c0149e',
 )
 
