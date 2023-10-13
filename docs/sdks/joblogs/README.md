@@ -33,6 +33,7 @@ res = s.job_logs.display(req)
 
 if res.success is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

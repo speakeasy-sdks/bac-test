@@ -20,6 +20,7 @@ res = s.varz.get()
 
 if res.varz_success is not None:
     # handle response
+    pass
 ```
 
 

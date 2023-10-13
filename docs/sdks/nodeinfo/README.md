@@ -22,6 +22,7 @@ res = s.node_info.get()
 
 if res.node_info is not None:
     # handle response
+    pass
 ```
 
 

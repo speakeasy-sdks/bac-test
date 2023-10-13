@@ -22,6 +22,7 @@ res = s.debug.get()
 
 if res.success is not None:
     # handle response
+    pass
 ```
 
 

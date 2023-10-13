@@ -41,6 +41,7 @@ res = s.results.get(req)
 
 if res.results_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

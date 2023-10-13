@@ -24,6 +24,7 @@ res = s.build_version.get(req)
 
 if res.version_response is not None:
     # handle response
+    pass
 ```
 <!-- End SDK Example Usage -->
 

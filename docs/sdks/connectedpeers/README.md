@@ -35,6 +35,7 @@ res = s.connected_peers.get()
 
 if res.peer_addr_infos is not None:
     # handle response
+    pass
 ```
 
 

@@ -20,6 +20,7 @@ res = s.healthz.get()
 
 if res.health_info is not None:
     # handle response
+    pass
 ```
 
 

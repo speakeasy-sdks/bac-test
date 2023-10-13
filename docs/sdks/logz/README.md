@@ -20,6 +20,7 @@ res = s.logz.get()
 
 if res.plain_success is not None:
     # handle response
+    pass
 ```
 
 

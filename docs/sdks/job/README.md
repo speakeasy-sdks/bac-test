@@ -24,6 +24,7 @@ res = s.job.approve()
 
 if res.success is not None:
     # handle response
+    pass
 ```
 
 
@@ -59,6 +60,7 @@ res = s.job.cancel(req)
 
 if res.cancel_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -187,6 +189,7 @@ res = s.job.submit(req)
 
 if res.submit_response is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
