@@ -9,7 +9,6 @@ from ..shared import resultsresponse as shared_resultsresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetResultsResponse:
     content_type: str = dataclasses.field()

@@ -5,4 +5,4 @@
 
 | Field                                                 | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `events`                                              | list[[JobHistory](../../models/shared/jobhistory.md)] | :heavy_minus_sign:                                    | N/A                                                   |
+| `events`                                              | List[[JobHistory](../../models/shared/jobhistory.md)] | :heavy_minus_sign:                                    | N/A                                                   |

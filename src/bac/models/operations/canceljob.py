@@ -11,7 +11,6 @@ from ..shared import unauthorized as shared_unauthorized
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class CancelJobResponse:
     content_type: str = dataclasses.field()

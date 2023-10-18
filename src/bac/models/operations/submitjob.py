@@ -9,7 +9,6 @@ from ..shared import submitresponse as shared_submitresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class SubmitJobResponse:
     content_type: str = dataclasses.field()

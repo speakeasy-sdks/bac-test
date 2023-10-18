@@ -21,6 +21,7 @@ from .sdkconfiguration import SDKConfiguration
 from .states import States
 from .varz import Varz
 from bac import utils
+from typing import Dict
 
 class Bac:
     r"""Bacalhau API: This page is the reference of the Bacalhau REST API. Project docs are available at https://docs.bacalhau.org/. Find more information about Bacalhau at https://github.com/bacalhau-project/bacalhau."""
@@ -48,7 +49,7 @@ class Bac:
     def __init__(self,
                  server_idx: int = None,
                  server_url: str = None,
-                 url_params: dict[str, str] = None,
+                 url_params: Dict[str, str] = None,
                  client: requests_http.Session = None,
                  retry_config: utils.RetryConfig = None
                  ) -> None:
@@ -59,7 +60,7 @@ class Bac:
         :param server_url: The server URL to use for all operations
         :type server_url: str
         :param url_params: Parameters to optionally template the server URL with
-        :type url_params: dict[str, str]
+        :type url_params: Dict[str, str]
         :param client: The requests.Session HTTP client to use for all operations
         :type client: requests_http.Session
         :param retry_config: The utils.RetryConfig to use globally

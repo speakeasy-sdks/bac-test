@@ -5,4 +5,4 @@
 
 | Field                                                           | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `results`                                                       | list[[PublishedResult](../../models/shared/publishedresult.md)] | :heavy_minus_sign:                                              | N/A                                                             |
+| `results`                                                       | List[[PublishedResult](../../models/shared/publishedresult.md)] | :heavy_minus_sign:                                              | N/A                                                             |

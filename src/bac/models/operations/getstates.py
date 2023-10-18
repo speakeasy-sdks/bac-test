@@ -9,7 +9,6 @@ from ..shared import stateresponse as shared_stateresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetStatesResponse:
     content_type: str = dataclasses.field()

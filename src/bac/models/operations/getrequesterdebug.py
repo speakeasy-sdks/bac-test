@@ -8,7 +8,6 @@ from ..shared import success as shared_success
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetRequesterDebugResponse:
     content_type: str = dataclasses.field()

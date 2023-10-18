@@ -5,11 +5,10 @@ import dataclasses
 from ..shared import selection_operator as shared_selection_operator
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class LabelSelectorRequirement:
     key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Key'), 'exclude': lambda f: f is None }})
@@ -18,7 +17,7 @@ class LabelSelectorRequirement:
     r"""operator represents a key's relationship to a set of values.
     Valid operators are In, NotIn, Exists and DoesNotExist.
     """
-    values: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Values'), 'exclude': lambda f: f is None }})
+    values: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Values'), 'exclude': lambda f: f is None }})
     r"""values is an array of string values. If the operator is In or NotIn,
     the values array must be non-empty. If the operator is Exists or DoesNotExist,
     the values array must be empty. This array is replaced during a strategic

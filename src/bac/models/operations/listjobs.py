@@ -9,7 +9,6 @@ from ..shared import listresponse as shared_listresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class ListJobsResponse:
     content_type: str = dataclasses.field()

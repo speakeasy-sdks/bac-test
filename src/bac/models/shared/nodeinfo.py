@@ -8,16 +8,15 @@ from ..shared import nodetype as shared_nodetype
 from ..shared import peer_addrinfo as shared_peer_addrinfo
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import Dict, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class NodeInfo:
     bacalhau_version: Optional[shared_buildversioninfo.BuildVersionInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('BacalhauVersion'), 'exclude': lambda f: f is None }})
     compute_node_info: Optional[shared_computenodeinfo.ComputeNodeInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ComputeNodeInfo'), 'exclude': lambda f: f is None }})
-    labels: Optional[dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Labels'), 'exclude': lambda f: f is None }})
+    labels: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Labels'), 'exclude': lambda f: f is None }})
     node_type: Optional[shared_nodetype.NodeType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('NodeType'), 'exclude': lambda f: f is None }})
     peer_info: Optional[shared_peer_addrinfo.PeerAddrInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('PeerInfo'), 'exclude': lambda f: f is None }})
     

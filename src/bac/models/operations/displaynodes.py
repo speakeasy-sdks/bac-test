@@ -5,8 +5,7 @@ import dataclasses
 import requests as requests_http
 from ..shared import internalservererror as shared_internalservererror
 from ..shared import nodeinfo as shared_nodeinfo
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -17,7 +16,7 @@ class DisplayNodesResponse:
     r"""HTTP response status code for this operation"""
     internal_server_error: Optional[shared_internalservererror.InternalServerError] = dataclasses.field(default=None)
     r"""Internal Server Error"""
-    node_infos: Optional[list[shared_nodeinfo.NodeInfo]] = dataclasses.field(default=None)
+    node_infos: Optional[List[shared_nodeinfo.NodeInfo]] = dataclasses.field(default=None)
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""

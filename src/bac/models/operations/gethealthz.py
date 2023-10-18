@@ -7,7 +7,6 @@ from ..shared import healthinfo as shared_healthinfo
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetHealthzResponse:
     content_type: str = dataclasses.field()

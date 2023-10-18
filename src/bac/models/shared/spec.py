@@ -14,14 +14,13 @@ from ..shared import resourceusageconfig as shared_resourceusageconfig
 from ..shared import storagespec as shared_storagespec
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class Spec:
-    annotations: Optional[list[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Annotations'), 'exclude': lambda f: f is None }})
+    annotations: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Annotations'), 'exclude': lambda f: f is None }})
     r"""Annotations on the job - could be user or machine assigned"""
     deal: Optional[shared_deal.Deal] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Deal'), 'exclude': lambda f: f is None }})
     r"""The deal the client has made, such as which job bids they have accepted."""
@@ -31,15 +30,15 @@ class Spec:
     r"""Do not track specified by the client"""
     engine: Optional[shared_engine.Engine] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Engine'), 'exclude': lambda f: f is None }})
     r"""e.g. docker or language"""
-    inputs: Optional[list[shared_storagespec.StorageSpec]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Inputs'), 'exclude': lambda f: f is None }})
+    inputs: Optional[List[shared_storagespec.StorageSpec]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Inputs'), 'exclude': lambda f: f is None }})
     r"""the data volumes we will read in the job
     for example \"read this ipfs cid\" 
     """
     network: Optional[shared_networkconfig.NetworkConfig] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Network'), 'exclude': lambda f: f is None }})
     r"""The type of networking access that the job needs"""
-    node_selectors: Optional[list[shared_labelselectorrequirement.LabelSelectorRequirement]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('NodeSelectors'), 'exclude': lambda f: f is None }})
+    node_selectors: Optional[List[shared_labelselectorrequirement.LabelSelectorRequirement]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('NodeSelectors'), 'exclude': lambda f: f is None }})
     r"""NodeSelectors is a selector which must be true for the compute node to run this job."""
-    outputs: Optional[list[shared_storagespec.StorageSpec]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Outputs'), 'exclude': lambda f: f is None }})
+    outputs: Optional[List[shared_storagespec.StorageSpec]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Outputs'), 'exclude': lambda f: f is None }})
     r"""the data volumes we will write in the job
     for example \"write the results to ipfs\" 
     """

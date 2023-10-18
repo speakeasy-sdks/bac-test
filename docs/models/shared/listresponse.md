@@ -5,4 +5,4 @@
 
 | Field                                                   | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `jobs`                                                  | list[[JobWithInfo](../../models/shared/jobwithinfo.md)] | :heavy_minus_sign:                                      | N/A                                                     |
+| `jobs`                                                  | List[[JobWithInfo](../../models/shared/jobwithinfo.md)] | :heavy_minus_sign:                                      | N/A                                                     |

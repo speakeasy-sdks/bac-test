@@ -6,16 +6,15 @@ from ..shared import executionstate as shared_executionstate
 from ..shared import jobstatetype as shared_jobstatetype
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class JobState:
     create_time: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('CreateTime'), 'exclude': lambda f: f is None }})
     r"""CreateTime is the time when the job was created."""
-    executions: Optional[list[shared_executionstate.ExecutionState]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Executions'), 'exclude': lambda f: f is None }})
+    executions: Optional[List[shared_executionstate.ExecutionState]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Executions'), 'exclude': lambda f: f is None }})
     r"""Executions is a list of executions of the job across the nodes.
     A new execution is created when a node is selected to execute the job, and a node can have multiple executions for the same
     job due to retries, but there can only be a single active execution per node at any given time.

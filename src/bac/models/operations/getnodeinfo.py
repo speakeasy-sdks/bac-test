@@ -8,7 +8,6 @@ from ..shared import nodeinfo as shared_nodeinfo
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetNodeInfoResponse:
     content_type: str = dataclasses.field()

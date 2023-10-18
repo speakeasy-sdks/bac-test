@@ -9,7 +9,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class FreeSpace:
     ipfs_mount: Optional[shared_mountstatus.MountStatus] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('IPFSMount'), 'exclude': lambda f: f is None }})

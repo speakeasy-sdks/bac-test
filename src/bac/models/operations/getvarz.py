@@ -3,8 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -15,7 +14,7 @@ class GetVarzResponse:
     r"""HTTP response status code for this operation"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""
-    varz_success: Optional[list[int]] = dataclasses.field(default=None)
+    varz_success: Optional[List[int]] = dataclasses.field(default=None)
     r"""OK"""
     
 

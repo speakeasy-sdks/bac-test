@@ -9,7 +9,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class StateChangeModelJobStateType:
     new: Optional[shared_jobstatetype.JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('New'), 'exclude': lambda f: f is None }})

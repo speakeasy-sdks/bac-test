@@ -9,7 +9,6 @@ from ..shared import internalservererror as shared_internalservererror
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetJobEventsResponse:
     content_type: str = dataclasses.field()

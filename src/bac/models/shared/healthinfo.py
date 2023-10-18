@@ -9,7 +9,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class HealthInfo:
     free_space: Optional[shared_freespace.FreeSpace] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('FreeSpace'), 'exclude': lambda f: f is None }})

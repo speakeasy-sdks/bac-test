@@ -9,7 +9,6 @@ from ..shared import versionresponse as shared_versionresponse
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetBuildVersionResponse:
     content_type: str = dataclasses.field()

@@ -6,11 +6,10 @@ from ..shared import s3storagespec as shared_s3storagespec
 from ..shared import storagesourcetype as shared_storagesourcetype
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
-from typing import Optional
+from typing import Dict, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class StorageSpec:
     cid: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('CID'), 'exclude': lambda f: f is None }})
@@ -18,7 +17,7 @@ class StorageSpec:
     IPFS storage spec this will be the data's CID).
     NOTE: The below is capitalized to match IPFS & IPLD (even though it's out of golang fmt)
     """
-    metadata: Optional[dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Metadata'), 'exclude': lambda f: f is None }})
+    metadata: Optional[Dict[str, str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Metadata'), 'exclude': lambda f: f is None }})
     r"""Additional properties specific to each driver"""
     name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Name'), 'exclude': lambda f: f is None }})
     r"""Name of the spec's data, for reference."""
