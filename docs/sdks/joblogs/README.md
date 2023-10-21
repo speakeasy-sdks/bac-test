@@ -20,13 +20,13 @@ from bac.models import shared
 s = bac.Bac()
 
 req = shared.LogRequest(
-    client_public_key='Car',
+    client_public_key='string',
     payload=shared.LogsPayload(
-        client_id='upright',
-        execution_id='Sports',
-        job_id='DRAM',
+        client_id='string',
+        execution_id='string',
+        job_id='string',
     ),
-    signature='Inlet',
+    signature='string',
 )
 
 res = s.job_logs.display(req)

@@ -48,12 +48,12 @@ from bac.models import shared
 s = bac.Bac()
 
 req = shared.CancelRequest(
-    client_public_key='Clifton',
+    client_public_key='string',
     payload=shared.JobCancelPayload(
-        client_id='powder',
-        job_id='AI',
+        client_id='string',
+        job_id='string',
     ),
-    signature='East',
+    signature='string',
 )
 
 res = s.job.cancel(req)
@@ -96,31 +96,31 @@ from bac.models import shared
 s = bac.Bac()
 
 req = shared.SubmitRequest(
-    client_public_key='sad',
+    client_public_key='string',
     payload=shared.JobCreatePayload(
         api_version='V1beta1',
-        client_id='challenge',
+        client_id='string',
         spec=shared.Spec(
             annotations=[
-                'Oriental',
+                'string',
             ],
             deal=shared.Deal(),
             docker=shared.JobSpecDocker(
                 entrypoint=[
-                    'Gasoline',
+                    'string',
                 ],
                 environment_variables=[
-                    'seriously',
+                    'string',
                 ],
                 parameters=[
-                    'Representative',
+                    'string',
                 ],
             ),
             inputs=[
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "less": 'Steel',
+                        "key": 'string',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                     s3=shared.S3StorageSpec(),
@@ -128,13 +128,13 @@ req = shared.SubmitRequest(
             ],
             network=shared.NetworkConfig(
                 domains=[
-                    'TLS',
+                    'string',
                 ],
             ),
             node_selectors=[
                 shared.LabelSelectorRequirement(
                     values=[
-                        'West',
+                        'string',
                     ],
                 ),
             ],
@@ -142,7 +142,7 @@ req = shared.SubmitRequest(
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "Licensed": 'Shoes',
+                        "key": 'string',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                     s3=shared.S3StorageSpec(),
@@ -150,7 +150,7 @@ req = shared.SubmitRequest(
             ],
             publisher_spec=shared.PublisherSpec(
                 params={
-                    "website": 'calculating',
+                    "key": 'string',
                 },
             ),
             resources=shared.ResourceUsageConfig(),
@@ -158,31 +158,31 @@ req = shared.SubmitRequest(
                 entry_module=shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "Southeast": 'synthesizing',
+                        "key": 'string',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                     s3=shared.S3StorageSpec(),
                 ),
                 environment_variables={
-                    "blue": 'North',
+                    "key": 'string',
                 },
                 import_modules=[
                     shared.StorageSpec(
                         cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                         metadata={
-                            "lavender": 'Berkshire',
+                            "key": 'string',
                         },
                         name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                         s3=shared.S3StorageSpec(),
                     ),
                 ],
                 parameters=[
-                    'quantify',
+                    'string',
                 ],
             ),
         ),
     ),
-    signature='Chair',
+    signature='string',
 )
 
 res = s.job.submit(req)
