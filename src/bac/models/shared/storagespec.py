@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import s3storagespec as shared_s3storagespec
-from ..shared import storagesourcetype as shared_storagesourcetype
+from .s3storagespec import S3StorageSpec
+from .storagesourcetype import StorageSourceType
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Dict, Optional
@@ -30,10 +30,10 @@ class StorageSpec:
     r"""Allow write access for locally mounted inputs"""
     repo: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Repo'), 'exclude': lambda f: f is None }})
     r"""URL of the git Repo to clone"""
-    s3: Optional[shared_s3storagespec.S3StorageSpec] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('S3'), 'exclude': lambda f: f is None }})
+    s3: Optional[S3StorageSpec] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('S3'), 'exclude': lambda f: f is None }})
     source_path: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('SourcePath'), 'exclude': lambda f: f is None }})
     r"""The path of the host data if we are using local directory paths"""
-    storage_source: Optional[shared_storagesourcetype.StorageSourceType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('StorageSource'), 'exclude': lambda f: f is None }})
+    storage_source: Optional[StorageSourceType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('StorageSource'), 'exclude': lambda f: f is None }})
     r"""StorageSource is the abstract source of the data. E.g. a storage source
     might be a URL download, but doesn't specify how the execution engine
     does the download or what it will do with the downloaded data.

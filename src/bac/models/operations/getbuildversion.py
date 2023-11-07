@@ -3,9 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import badrequest as shared_badrequest
-from ..shared import internalservererror as shared_internalservererror
-from ..shared import versionresponse as shared_versionresponse
+from ...models.shared import versionresponse as shared_versionresponse
 from typing import Optional
 
 
@@ -15,10 +13,6 @@ class GetBuildVersionResponse:
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    bad_request: Optional[shared_badrequest.BadRequest] = dataclasses.field(default=None)
-    r"""Bad Request"""
-    internal_server_error: Optional[shared_internalservererror.InternalServerError] = dataclasses.field(default=None)
-    r"""Internal Server Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""
     version_response: Optional[shared_versionresponse.VersionResponse] = dataclasses.field(default=None)

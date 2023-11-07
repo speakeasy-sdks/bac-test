@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import buildversioninfo as shared_buildversioninfo
+from .buildversioninfo import BuildVersionInfo
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -11,6 +11,6 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class VersionResponse:
-    build_version_info: Optional[shared_buildversioninfo.BuildVersionInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('build_version_info'), 'exclude': lambda f: f is None }})
+    build_version_info: Optional[BuildVersionInfo] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('build_version_info'), 'exclude': lambda f: f is None }})
     
 

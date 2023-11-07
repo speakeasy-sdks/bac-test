@@ -1,5 +1,5 @@
 # JobLogs
-(*job_logs*)
+(*.job_logs*)
 
 ### Available Operations
 

@@ -1,5 +1,5 @@
 # Healthz
-(*healthz*)
+(*.healthz*)
 
 ### Available Operations
 
@@ -11,7 +11,6 @@
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

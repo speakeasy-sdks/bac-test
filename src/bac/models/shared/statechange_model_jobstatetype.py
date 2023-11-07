@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import jobstatetype as shared_jobstatetype
+from .jobstatetype import JobStateType
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -11,7 +11,7 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class StateChangeModelJobStateType:
-    new: Optional[shared_jobstatetype.JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('New'), 'exclude': lambda f: f is None }})
-    previous: Optional[shared_jobstatetype.JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Previous'), 'exclude': lambda f: f is None }})
+    new: Optional[JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('New'), 'exclude': lambda f: f is None }})
+    previous: Optional[JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Previous'), 'exclude': lambda f: f is None }})
     
 

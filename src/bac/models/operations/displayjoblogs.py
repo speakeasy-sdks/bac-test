@@ -3,11 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import badrequest as shared_badrequest
-from ..shared import forbidden as shared_forbidden
-from ..shared import internalservererror as shared_internalservererror
-from ..shared import success as shared_success
-from ..shared import unauthorized as shared_unauthorized
+from ...models.shared import success as shared_success
 from typing import Optional
 
 
@@ -17,17 +13,9 @@ class DisplayJobLogsResponse:
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    bad_request: Optional[shared_badrequest.BadRequest] = dataclasses.field(default=None)
-    r"""Bad Request"""
-    forbidden: Optional[shared_forbidden.Forbidden] = dataclasses.field(default=None)
-    r"""Forbidden"""
-    internal_server_error: Optional[shared_internalservererror.InternalServerError] = dataclasses.field(default=None)
-    r"""Internal Server Error"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""
     success: Optional[shared_success.Success] = dataclasses.field(default=None)
     r"""OK"""
-    unauthorized: Optional[shared_unauthorized.Unauthorized] = dataclasses.field(default=None)
-    r"""Unauthorized"""
     
 

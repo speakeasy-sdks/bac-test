@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import executionstate as shared_executionstate
-from ..shared import jobstatetype as shared_jobstatetype
+from .executionstate import ExecutionState
+from .jobstatetype import JobStateType
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import List, Optional
@@ -14,14 +14,14 @@ from typing import List, Optional
 class JobState:
     create_time: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('CreateTime'), 'exclude': lambda f: f is None }})
     r"""CreateTime is the time when the job was created."""
-    executions: Optional[List[shared_executionstate.ExecutionState]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Executions'), 'exclude': lambda f: f is None }})
+    executions: Optional[List[ExecutionState]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Executions'), 'exclude': lambda f: f is None }})
     r"""Executions is a list of executions of the job across the nodes.
     A new execution is created when a node is selected to execute the job, and a node can have multiple executions for the same
     job due to retries, but there can only be a single active execution per node at any given time.
     """
     job_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('JobID'), 'exclude': lambda f: f is None }})
     r"""JobID is the unique identifier for the job"""
-    state: Optional[shared_jobstatetype.JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('State'), 'exclude': lambda f: f is None }})
+    state: Optional[JobStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('State'), 'exclude': lambda f: f is None }})
     r"""State is the current state of the job"""
     timeout_at: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('TimeoutAt'), 'exclude': lambda f: f is None }})
     r"""TimeoutAt is the time when the job will be timed out if it is not completed."""

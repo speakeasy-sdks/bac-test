@@ -12,17 +12,13 @@ pip install git+https://github.com/speakeasy-sdks/bac-test.git
 <!-- Start SDK Example Usage -->
 ```python
 import bac
-from bac.models import shared
 
 s = bac.Bac()
 
-req = shared.VersionRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-)
 
-res = s.build_version.get(req)
+res = s.job.approve()
 
-if res.version_response is not None:
+if res.success is not None:
     # handle response
     pass
 ```
@@ -32,79 +28,79 @@ if res.version_response is not None:
 ## Available Resources and Operations
 
 
-### [build_version](docs/sdks/buildversion/README.md)
-
-* [get](docs/sdks/buildversion/README.md#get) - Returns the build version running on the server.
-
-### [connected_peers](docs/sdks/connectedpeers/README.md)
-
-* [get](docs/sdks/connectedpeers/README.md#get) - Returns the peers connected to the host via the transport layer.
-
-### [debug](docs/sdks/debug/README.md)
-
-* [get](docs/sdks/debug/README.md#get) - Returns debug information on what the current node is doing.
-
-### [healthz](docs/sdks/healthz/README.md)
-
-* [get](docs/sdks/healthz/README.md#get)
-
-### [host_node_id](docs/sdks/hostnodeid/README.md)
-
-* [get](docs/sdks/hostnodeid/README.md#get) - Returns the id of the host node.
-
-### [job](docs/sdks/job/README.md)
+### [.job](docs/sdks/job/README.md)
 
 * [approve](docs/sdks/job/README.md#approve) - Approves a job to be run on this compute node.
 * [cancel](docs/sdks/job/README.md#cancel) - Cancels the job with the job-id specified in the body payload.
 * [submit](docs/sdks/job/README.md#submit) - Submits a new job to the network.
 
-### [job_events](docs/sdks/jobevents/README.md)
+### [.debug](docs/sdks/debug/README.md)
 
-* [get](docs/sdks/jobevents/README.md#get) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
+* [get](docs/sdks/debug/README.md#get) - Returns debug information on what the current node is doing.
 
-### [job_logs](docs/sdks/joblogs/README.md)
+### [.healthz](docs/sdks/healthz/README.md)
 
-* [display](docs/sdks/joblogs/README.md#display) - Displays the logs for a current job/execution
+* [get](docs/sdks/healthz/README.md#get)
 
-### [jobs](docs/sdks/jobs/README.md)
+### [.host_node_id](docs/sdks/hostnodeid/README.md)
 
-* [list](docs/sdks/jobs/README.md#list) - Simply lists jobs.
+* [get](docs/sdks/hostnodeid/README.md#get) - Returns the id of the host node.
 
-### [livez](docs/sdks/livez/README.md)
+### [.livez](docs/sdks/livez/README.md)
 
 * [get](docs/sdks/livez/README.md#get)
 
-### [logz](docs/sdks/logz/README.md)
+### [.logz](docs/sdks/logz/README.md)
 
 * [get](docs/sdks/logz/README.md#get)
 
-### [node_info](docs/sdks/nodeinfo/README.md)
+### [.node_info](docs/sdks/nodeinfo/README.md)
 
 * [get](docs/sdks/nodeinfo/README.md#get) - Returns the info of the node.
 
-### [nodes](docs/sdks/nodes/README.md)
+### [.connected_peers](docs/sdks/connectedpeers/README.md)
 
-* [display](docs/sdks/nodes/README.md#display) - Displays the nodes that this requester knows about
+* [get](docs/sdks/connectedpeers/README.md#get) - Returns the peers connected to the host via the transport layer.
 
-### [readyz](docs/sdks/readyz/README.md)
+### [.readyz](docs/sdks/readyz/README.md)
 
 * [get](docs/sdks/readyz/README.md#get)
 
-### [requester_debug](docs/sdks/requesterdebug/README.md)
+### [.requester_debug](docs/sdks/requesterdebug/README.md)
 
 * [get](docs/sdks/requesterdebug/README.md#get) - Returns debug information on what the current node is doing.
 
-### [results](docs/sdks/results/README.md)
+### [.job_events](docs/sdks/jobevents/README.md)
+
+* [get](docs/sdks/jobevents/README.md#get) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
+
+### [.jobs](docs/sdks/jobs/README.md)
+
+* [list](docs/sdks/jobs/README.md#list) - Simply lists jobs.
+
+### [.job_logs](docs/sdks/joblogs/README.md)
+
+* [display](docs/sdks/joblogs/README.md#display) - Displays the logs for a current job/execution
+
+### [.nodes](docs/sdks/nodes/README.md)
+
+* [display](docs/sdks/nodes/README.md#display) - Displays the nodes that this requester knows about
+
+### [.results](docs/sdks/results/README.md)
 
 * [get](docs/sdks/results/README.md#get) - Returns the results of the job-id specified in the body payload.
 
-### [states](docs/sdks/states/README.md)
+### [.states](docs/sdks/states/README.md)
 
 * [get](docs/sdks/states/README.md#get) - Returns the state of the job-id specified in the body payload.
 
-### [varz](docs/sdks/varz/README.md)
+### [.varz](docs/sdks/varz/README.md)
 
 * [get](docs/sdks/varz/README.md#get)
+
+### [.build_version](docs/sdks/buildversion/README.md)
+
+* [get](docs/sdks/buildversion/README.md#get) - Returns the build version running on the server.
 <!-- End SDK Available Operations -->
 
 
@@ -133,6 +129,30 @@ Here's an example of one such pagination call:
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
 
 
+## Example
+
+```python
+import bac
+
+s = bac.Bac()
+
+
+res = None
+try:
+    res = s.job.approve()
+
+except (BadRequest) as e:
+    print(e) # handle exception
+except (Forbidden) as e:
+    print(e) # handle exception
+
+except (InternalServerError) as e:
+    print(e) # handle exception
+
+if res.success is not None:
+    # handle response
+    pass
+```
 <!-- End Error Handling -->
 
 
@@ -150,22 +170,17 @@ You can override the default server globally by passing a server index to the `s
 
 For example:
 
-
 ```python
 import bac
-from bac.models import shared
 
 s = bac.Bac(
-    server_idx=0
+    server_idx=0,
 )
 
-req = shared.VersionRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-)
 
-res = s.build_version.get(req)
+res = s.job.approve()
 
-if res.version_response is not None:
+if res.success is not None:
     # handle response
     pass
 ```
@@ -175,22 +190,17 @@ if res.version_response is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 
-
 ```python
 import bac
-from bac.models import shared
 
 s = bac.Bac(
-    server_url="http://bootstrap.production.bacalhau.org:1234/"
+    server_url="http://bootstrap.production.bacalhau.org:1234/",
 )
 
-req = shared.VersionRequest(
-    client_id='ac13188e93c97a9c2e7cf8e86c7313156a73436036f30da1ececc2ce79f9ea51',
-)
 
-res = s.build_version.get(req)
+res = s.job.approve()
 
-if res.version_response is not None:
+if res.success is not None:
     # handle response
     pass
 ```
@@ -214,8 +224,6 @@ http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
 s = bac.Bac(client: http_client)
 ```
-
-
 <!-- End Custom HTTP Client -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

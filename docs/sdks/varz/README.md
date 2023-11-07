@@ -1,5 +1,5 @@
 # Varz
-(*varz*)
+(*.varz*)
 
 ### Available Operations
 
@@ -11,7 +11,6 @@
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

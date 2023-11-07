@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import metadata as shared_metadata
-from ..shared import spec as shared_spec
+from .metadata import Metadata
+from .spec import Spec
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -13,9 +13,9 @@ from typing import Optional
 @dataclasses.dataclass
 class Job:
     api_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('APIVersion'), 'exclude': lambda f: f is None }})
-    metadata: Optional[shared_metadata.Metadata] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Metadata'), 'exclude': lambda f: f is None }})
+    metadata: Optional[Metadata] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Metadata'), 'exclude': lambda f: f is None }})
     r"""TODO this doesn't seem like it should be a part of the job as it cannot be known by a client ahead of time."""
-    spec: Optional[shared_spec.Spec] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Spec'), 'exclude': lambda f: f is None }})
+    spec: Optional[Spec] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Spec'), 'exclude': lambda f: f is None }})
     r"""The specification of this job."""
     
 

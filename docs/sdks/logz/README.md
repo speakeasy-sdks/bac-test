@@ -1,5 +1,5 @@
 # Logz
-(*logz*)
+(*.logz*)
 
 ### Available Operations
 
@@ -11,7 +11,6 @@
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

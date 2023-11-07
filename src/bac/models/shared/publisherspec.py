@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import publisher as shared_publisher
+from .publisher import Publisher
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Any, Dict, Optional
@@ -12,6 +12,6 @@ from typing import Any, Dict, Optional
 @dataclasses.dataclass
 class PublisherSpec:
     params: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Params'), 'exclude': lambda f: f is None }})
-    type: Optional[shared_publisher.Publisher] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Type'), 'exclude': lambda f: f is None }})
+    type: Optional[Publisher] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Type'), 'exclude': lambda f: f is None }})
     
 

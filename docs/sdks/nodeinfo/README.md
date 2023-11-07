@@ -1,5 +1,5 @@
 # NodeInfo
-(*node_info*)
+(*.node_info*)
 
 ### Available Operations
 
@@ -13,7 +13,6 @@ Returns the info of the node.
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

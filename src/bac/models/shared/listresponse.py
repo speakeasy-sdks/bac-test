@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import jobwithinfo as shared_jobwithinfo
+from .jobwithinfo import JobWithInfo
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import List, Optional
@@ -11,6 +11,6 @@ from typing import List, Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ListResponse:
-    jobs: Optional[List[shared_jobwithinfo.JobWithInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobs'), 'exclude': lambda f: f is None }})
+    jobs: Optional[List[JobWithInfo]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('jobs'), 'exclude': lambda f: f is None }})
     
 

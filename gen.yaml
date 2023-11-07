@@ -2,29 +2,33 @@ configVersion: 1.0.0
 management:
   docChecksum: 537b1aa55043f21b45546f608f384bee
   docVersion: ""
-  speakeasyVersion: 1.109.0
-  generationVersion: 2.173.0
+  speakeasyVersion: 1.114.1
+  generationVersion: 2.181.1
 generation:
-  comments:
-    disableComments: false
-    omitDescriptionIfSummaryPresent: false
-  baseServerURL: ""
-  repoURL: https://github.com/speakeasy-sdks/bac-test.git
+  comments: {}
   sdkClassName: bac
-  singleTagPerOp: false
-  tagNamespacingDisabled: false
+  repoURL: https://github.com/speakeasy-sdks/bac-test.git
 features:
   python:
-    core: 3.3.1
+    core: 4.1.0
     enums: 2.81.1
     globalServerURLs: 2.82.0
     groups: 2.81.2
     nameOverrides: 2.81.1
 python:
-  version: 0.14.1
+  version: 0.15.0
   author: team-ws
+  clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Bac API
   flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
   installationURL: https://github.com/speakeasy-sdks/bac-test.git
   maxMethodParams: 4
   packageName: bac-test

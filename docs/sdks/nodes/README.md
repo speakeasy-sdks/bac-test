@@ -1,5 +1,5 @@
 # Nodes
-(*nodes*)
+(*.nodes*)
 
 ### Available Operations
 
@@ -14,13 +14,12 @@ Displays the nodes that this requester knows about
 ```python
 import bac
 
-
 s = bac.Bac()
 
 
 res = s.nodes.display()
 
-if res.node_infos is not None:
+if res.classes is not None:
     # handle response
     pass
 ```

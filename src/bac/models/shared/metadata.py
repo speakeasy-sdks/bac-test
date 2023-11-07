@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import jobrequester as shared_jobrequester
+from .jobrequester import JobRequester
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -17,6 +17,6 @@ class Metadata:
     r"""Time the job was submitted to the bacalhau network."""
     id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('ID'), 'exclude': lambda f: f is None }})
     r"""The unique global ID of this job in the bacalhau network."""
-    requester: Optional[shared_jobrequester.JobRequester] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Requester'), 'exclude': lambda f: f is None }})
+    requester: Optional[JobRequester] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Requester'), 'exclude': lambda f: f is None }})
     
 

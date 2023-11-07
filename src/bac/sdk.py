@@ -25,24 +25,24 @@ from typing import Dict
 
 class Bac:
     r"""Bacalhau API: This page is the reference of the Bacalhau REST API. Project docs are available at https://docs.bacalhau.org/. Find more information about Bacalhau at https://github.com/bacalhau-project/bacalhau."""
-    build_version: BuildVersion
-    connected_peers: ConnectedPeers
+    job: Job
     debug: Debug
     healthz: Healthz
     host_node_id: HostNodeID
-    job: Job
-    job_events: JobEvents
-    job_logs: JobLogs
-    jobs: Jobs
     livez: Livez
     logz: Logz
     node_info: NodeInfo
-    nodes: Nodes
+    connected_peers: ConnectedPeers
     readyz: Readyz
     requester_debug: RequesterDebug
+    job_events: JobEvents
+    jobs: Jobs
+    job_logs: JobLogs
+    nodes: Nodes
     results: Results
     states: States
     varz: Varz
+    build_version: BuildVersion
 
     sdk_configuration: SDKConfiguration
 
@@ -80,22 +80,22 @@ class Bac:
         self._init_sdks()
     
     def _init_sdks(self):
-        self.build_version = BuildVersion(self.sdk_configuration)
-        self.connected_peers = ConnectedPeers(self.sdk_configuration)
+        self.job = Job(self.sdk_configuration)
         self.debug = Debug(self.sdk_configuration)
         self.healthz = Healthz(self.sdk_configuration)
         self.host_node_id = HostNodeID(self.sdk_configuration)
-        self.job = Job(self.sdk_configuration)
-        self.job_events = JobEvents(self.sdk_configuration)
-        self.job_logs = JobLogs(self.sdk_configuration)
-        self.jobs = Jobs(self.sdk_configuration)
         self.livez = Livez(self.sdk_configuration)
         self.logz = Logz(self.sdk_configuration)
         self.node_info = NodeInfo(self.sdk_configuration)
-        self.nodes = Nodes(self.sdk_configuration)
+        self.connected_peers = ConnectedPeers(self.sdk_configuration)
         self.readyz = Readyz(self.sdk_configuration)
         self.requester_debug = RequesterDebug(self.sdk_configuration)
+        self.job_events = JobEvents(self.sdk_configuration)
+        self.jobs = Jobs(self.sdk_configuration)
+        self.job_logs = JobLogs(self.sdk_configuration)
+        self.nodes = Nodes(self.sdk_configuration)
         self.results = Results(self.sdk_configuration)
         self.states = States(self.sdk_configuration)
         self.varz = Varz(self.sdk_configuration)
+        self.build_version = BuildVersion(self.sdk_configuration)
     

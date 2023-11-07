@@ -1,5 +1,5 @@
 # States
-(*states*)
+(*.states*)
 
 ### Available Operations
 

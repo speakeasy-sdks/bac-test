@@ -1,5 +1,5 @@
 # BuildVersion
-(*build_version*)
+(*.build_version*)
 
 ### Available Operations
 

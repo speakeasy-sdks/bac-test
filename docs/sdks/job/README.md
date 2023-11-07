@@ -1,5 +1,5 @@
 # Job
-(*job*)
+(*.job*)
 
 ### Available Operations
 
@@ -15,7 +15,6 @@ Approves a job to be run on this compute node.
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

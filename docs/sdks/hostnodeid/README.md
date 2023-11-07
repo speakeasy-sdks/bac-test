@@ -1,5 +1,5 @@
 # HostNodeID
-(*host_node_id*)
+(*.host_node_id*)
 
 ### Available Operations
 
@@ -13,7 +13,6 @@ Returns the id of the host node.
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

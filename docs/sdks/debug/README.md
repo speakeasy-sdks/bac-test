@@ -1,5 +1,5 @@
 # Debug
-(*debug*)
+(*.debug*)
 
 ### Available Operations
 
@@ -13,7 +13,6 @@ Returns debug information on what the current node is doing.
 
 ```python
 import bac
-
 
 s = bac.Bac()
 

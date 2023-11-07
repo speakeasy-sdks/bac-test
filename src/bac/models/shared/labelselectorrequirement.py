@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import selection_operator as shared_selection_operator
+from .selection_operator import SelectionOperator
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import List, Optional
@@ -13,7 +13,7 @@ from typing import List, Optional
 class LabelSelectorRequirement:
     key: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Key'), 'exclude': lambda f: f is None }})
     r"""key is the label key that the selector applies to."""
-    operator: Optional[shared_selection_operator.SelectionOperator] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Operator'), 'exclude': lambda f: f is None }})
+    operator: Optional[SelectionOperator] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Operator'), 'exclude': lambda f: f is None }})
     r"""operator represents a key's relationship to a set of values.
     Valid operators are In, NotIn, Exists and DoesNotExist.
     """

@@ -3,8 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import internalservererror as shared_internalservererror
-from ..shared import nodeinfo as shared_nodeinfo
+from ...models.shared import nodeinfo as shared_nodeinfo
 from typing import Optional
 
 
@@ -14,8 +13,6 @@ class GetNodeInfoResponse:
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    internal_server_error: Optional[shared_internalservererror.InternalServerError] = dataclasses.field(default=None)
-    r"""Internal Server Error"""
     node_info: Optional[shared_nodeinfo.NodeInfo] = dataclasses.field(default=None)
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)

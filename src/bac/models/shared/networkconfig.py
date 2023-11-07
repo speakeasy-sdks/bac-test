@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import network as shared_network
+from .network import Network
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import List, Optional
@@ -12,6 +12,6 @@ from typing import List, Optional
 @dataclasses.dataclass
 class NetworkConfig:
     domains: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Domains'), 'exclude': lambda f: f is None }})
-    type: Optional[shared_network.Network] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Type'), 'exclude': lambda f: f is None }})
+    type: Optional[Network] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Type'), 'exclude': lambda f: f is None }})
     
 

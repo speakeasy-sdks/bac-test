@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from ..shared import executionstatetype as shared_executionstatetype
+from .executionstatetype import ExecutionStateType
 from bac import utils
 from dataclasses_json import Undefined, dataclass_json
 from typing import Optional
@@ -11,7 +11,7 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class StateChangeModelExecutionStateType:
-    new: Optional[shared_executionstatetype.ExecutionStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('New'), 'exclude': lambda f: f is None }})
-    previous: Optional[shared_executionstatetype.ExecutionStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Previous'), 'exclude': lambda f: f is None }})
+    new: Optional[ExecutionStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('New'), 'exclude': lambda f: f is None }})
+    previous: Optional[ExecutionStateType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Previous'), 'exclude': lambda f: f is None }})
     
 

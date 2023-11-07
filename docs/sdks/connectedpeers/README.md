@@ -1,5 +1,5 @@
 # ConnectedPeers
-(*connected_peers*)
+(*.connected_peers*)
 
 ### Available Operations
 
@@ -27,13 +27,12 @@ Example response:
 ```python
 import bac
 
-
 s = bac.Bac()
 
 
 res = s.connected_peers.get()
 
-if res.peer_addr_infos is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
