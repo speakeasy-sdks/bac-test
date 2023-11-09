@@ -1,5 +1,5 @@
 # Results
-(*.results*)
+(*results*)
 
 ### Available Operations
 
@@ -54,4 +54,10 @@ if res.results_response is not None:
 ### Response
 
 **[operations.GetResultsResponse](../../models/operations/getresultsresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

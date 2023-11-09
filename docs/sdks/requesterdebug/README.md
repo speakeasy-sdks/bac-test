@@ -1,5 +1,5 @@
 # RequesterDebug
-(*.requester_debug*)
+(*requester_debug*)
 
 ### Available Operations
 
@@ -28,4 +28,9 @@ if res.success is not None:
 ### Response
 
 **[operations.GetRequesterDebugResponse](../../models/operations/getrequesterdebugresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

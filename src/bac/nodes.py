@@ -12,6 +12,7 @@ class Nodes:
         self.sdk_configuration = sdk_config
         
     
+    
     def display(self) -> operations.DisplayNodesResponse:
         r"""Displays the nodes that this requester knows about"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())

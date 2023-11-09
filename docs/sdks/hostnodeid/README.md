@@ -1,5 +1,5 @@
 # HostNodeID
-(*.host_node_id*)
+(*host_node_id*)
 
 ### Available Operations
 
@@ -28,4 +28,8 @@ if res.plain_success is not None:
 ### Response
 
 **[operations.GetHostNodeIDResponse](../../models/operations/gethostnodeidresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

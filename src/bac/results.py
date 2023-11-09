@@ -12,6 +12,7 @@ class Results:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self, request: shared.StateRequest) -> operations.GetResultsResponse:
         r"""Returns the results of the job-id specified in the body payload.
         Example response:

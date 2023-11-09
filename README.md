@@ -28,77 +28,77 @@ if res.success is not None:
 ## Available Resources and Operations
 
 
-### [.job](docs/sdks/job/README.md)
+### [job](docs/sdks/job/README.md)
 
 * [approve](docs/sdks/job/README.md#approve) - Approves a job to be run on this compute node.
 * [cancel](docs/sdks/job/README.md#cancel) - Cancels the job with the job-id specified in the body payload.
 * [submit](docs/sdks/job/README.md#submit) - Submits a new job to the network.
 
-### [.debug](docs/sdks/debug/README.md)
+### [debug](docs/sdks/debug/README.md)
 
 * [get](docs/sdks/debug/README.md#get) - Returns debug information on what the current node is doing.
 
-### [.healthz](docs/sdks/healthz/README.md)
+### [healthz](docs/sdks/healthz/README.md)
 
 * [get](docs/sdks/healthz/README.md#get)
 
-### [.host_node_id](docs/sdks/hostnodeid/README.md)
+### [host_node_id](docs/sdks/hostnodeid/README.md)
 
 * [get](docs/sdks/hostnodeid/README.md#get) - Returns the id of the host node.
 
-### [.livez](docs/sdks/livez/README.md)
+### [livez](docs/sdks/livez/README.md)
 
 * [get](docs/sdks/livez/README.md#get)
 
-### [.logz](docs/sdks/logz/README.md)
+### [logz](docs/sdks/logz/README.md)
 
 * [get](docs/sdks/logz/README.md#get)
 
-### [.node_info](docs/sdks/nodeinfo/README.md)
+### [node_info](docs/sdks/nodeinfo/README.md)
 
 * [get](docs/sdks/nodeinfo/README.md#get) - Returns the info of the node.
 
-### [.connected_peers](docs/sdks/connectedpeers/README.md)
+### [connected_peers](docs/sdks/connectedpeers/README.md)
 
 * [get](docs/sdks/connectedpeers/README.md#get) - Returns the peers connected to the host via the transport layer.
 
-### [.readyz](docs/sdks/readyz/README.md)
+### [readyz](docs/sdks/readyz/README.md)
 
 * [get](docs/sdks/readyz/README.md#get)
 
-### [.requester_debug](docs/sdks/requesterdebug/README.md)
+### [requester_debug](docs/sdks/requesterdebug/README.md)
 
 * [get](docs/sdks/requesterdebug/README.md#get) - Returns debug information on what the current node is doing.
 
-### [.job_events](docs/sdks/jobevents/README.md)
+### [job_events](docs/sdks/jobevents/README.md)
 
 * [get](docs/sdks/jobevents/README.md#get) - Returns the events related to the job-id passed in the body payload. Useful for troubleshooting.
 
-### [.jobs](docs/sdks/jobs/README.md)
+### [jobs](docs/sdks/jobs/README.md)
 
 * [list](docs/sdks/jobs/README.md#list) - Simply lists jobs.
 
-### [.job_logs](docs/sdks/joblogs/README.md)
+### [job_logs](docs/sdks/joblogs/README.md)
 
 * [display](docs/sdks/joblogs/README.md#display) - Displays the logs for a current job/execution
 
-### [.nodes](docs/sdks/nodes/README.md)
+### [nodes](docs/sdks/nodes/README.md)
 
 * [display](docs/sdks/nodes/README.md#display) - Displays the nodes that this requester knows about
 
-### [.results](docs/sdks/results/README.md)
+### [results](docs/sdks/results/README.md)
 
 * [get](docs/sdks/results/README.md#get) - Returns the results of the job-id specified in the body payload.
 
-### [.states](docs/sdks/states/README.md)
+### [states](docs/sdks/states/README.md)
 
 * [get](docs/sdks/states/README.md#get) - Returns the state of the job-id specified in the body payload.
 
-### [.varz](docs/sdks/varz/README.md)
+### [varz](docs/sdks/varz/README.md)
 
 * [get](docs/sdks/varz/README.md#get)
 
-### [.build_version](docs/sdks/buildversion/README.md)
+### [build_version](docs/sdks/buildversion/README.md)
 
 * [get](docs/sdks/buildversion/README.md#get) - Returns the build version running on the server.
 <!-- End SDK Available Operations -->
@@ -126,7 +126,14 @@ Here's an example of one such pagination call:
 <!-- Start Error Handling -->
 # Error Handling
 
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.Forbidden           | 403                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |
 
 
 ## Example
@@ -140,14 +147,16 @@ s = bac.Bac()
 res = None
 try:
     res = s.job.approve()
+except (errors.BadRequest) as e:
+    print(e) # handle exception
+except (errors.Forbidden) as e:
+    print(e) # handle exception
 
-except (BadRequest) as e:
+except (errors.InternalServerError) as e:
     print(e) # handle exception
-except (Forbidden) as e:
+except (errors.SDKError) as e:
     print(e) # handle exception
 
-except (InternalServerError) as e:
-    print(e) # handle exception
 
 if res.success is not None:
     # handle response
@@ -214,7 +223,7 @@ if res.success is not None:
 The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
 
-For example, you could specify a header for every request that your sdk makes as follows:
+For example, you could specify a header for every request that this sdk makes as follows:
 
 ```python
 import bac

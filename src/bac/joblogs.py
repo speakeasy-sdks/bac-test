@@ -12,6 +12,7 @@ class JobLogs:
         self.sdk_configuration = sdk_config
         
     
+    
     def display(self, request: shared.LogRequest) -> operations.DisplayJobLogsResponse:
         r"""Displays the logs for a current job/execution
         Shows the output from the job specified by `id` as long as that job belongs to `client_id`.

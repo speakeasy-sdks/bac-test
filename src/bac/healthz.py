@@ -12,6 +12,7 @@ class Healthz:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self) -> operations.GetHealthzResponse:
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         

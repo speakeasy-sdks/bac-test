@@ -1,5 +1,5 @@
 # JobEvents
-(*.job_events*)
+(*job_events*)
 
 ### Available Operations
 
@@ -41,4 +41,10 @@ if res.events_response is not None:
 ### Response
 
 **[operations.GetJobEventsResponse](../../models/operations/getjobeventsresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

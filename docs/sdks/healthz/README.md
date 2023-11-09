@@ -1,5 +1,5 @@
 # Healthz
-(*.healthz*)
+(*healthz*)
 
 ### Available Operations
 
@@ -26,4 +26,8 @@ if res.health_info is not None:
 ### Response
 
 **[operations.GetHealthzResponse](../../models/operations/gethealthzresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

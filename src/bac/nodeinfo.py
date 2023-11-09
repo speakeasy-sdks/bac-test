@@ -12,6 +12,7 @@ class NodeInfo:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self) -> operations.GetNodeInfoResponse:
         r"""Returns the info of the node."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())

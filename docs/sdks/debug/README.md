@@ -1,5 +1,5 @@
 # Debug
-(*.debug*)
+(*debug*)
 
 ### Available Operations
 
@@ -28,4 +28,9 @@ if res.success is not None:
 ### Response
 
 **[operations.GetDebugResponse](../../models/operations/getdebugresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

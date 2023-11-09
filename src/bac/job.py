@@ -12,6 +12,7 @@ class Job:
         self.sdk_configuration = sdk_config
         
     
+    
     def approve(self) -> operations.ApproveJobResponse:
         r"""Approves a job to be run on this compute node."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -60,6 +61,7 @@ class Job:
 
         return res
 
+    
     
     def cancel(self, request: shared.CancelRequest) -> operations.CancelJobResponse:
         r"""Cancels the job with the job-id specified in the body payload.
@@ -125,6 +127,7 @@ class Job:
 
         return res
 
+    
     
     def submit(self, request: shared.SubmitRequest) -> operations.SubmitJobResponse:
         r"""Submits a new job to the network.

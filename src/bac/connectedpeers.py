@@ -12,6 +12,7 @@ class ConnectedPeers:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self) -> operations.GetConnectedPeersResponse:
         r"""Returns the peers connected to the host via the transport layer.
         As described in the [architecture docs](https://docs.bacalhau.org/about-bacalhau/architecture), each node is connected to a number of peer nodes.

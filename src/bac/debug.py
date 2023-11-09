@@ -12,6 +12,7 @@ class Debug:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self) -> operations.GetDebugResponse:
         r"""Returns debug information on what the current node is doing."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())

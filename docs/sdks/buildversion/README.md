@@ -1,5 +1,5 @@
 # BuildVersion
-(*.build_version*)
+(*build_version*)
 
 ### Available Operations
 
@@ -38,4 +38,10 @@ if res.version_response is not None:
 ### Response
 
 **[operations.GetBuildVersionResponse](../../models/operations/getbuildversionresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

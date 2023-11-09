@@ -1,5 +1,5 @@
 # States
-(*.states*)
+(*states*)
 
 ### Available Operations
 
@@ -94,4 +94,10 @@ if res.state_response is not None:
 ### Response
 
 **[operations.GetStatesResponse](../../models/operations/getstatesresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

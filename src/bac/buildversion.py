@@ -12,6 +12,7 @@ class BuildVersion:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self, request: shared.VersionRequest) -> operations.GetBuildVersionResponse:
         r"""Returns the build version running on the server.
         See https://github.com/bacalhau-project/bacalhau/releases for a complete list of `gitversion` tags.

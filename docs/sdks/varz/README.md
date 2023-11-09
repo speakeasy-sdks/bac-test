@@ -1,5 +1,5 @@
 # Varz
-(*.varz*)
+(*varz*)
 
 ### Available Operations
 
@@ -26,4 +26,8 @@ if res.varz_success is not None:
 ### Response
 
 **[operations.GetVarzResponse](../../models/operations/getvarzresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

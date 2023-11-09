@@ -1,5 +1,5 @@
 # ConnectedPeers
-(*.connected_peers*)
+(*connected_peers*)
 
 ### Available Operations
 
@@ -41,4 +41,9 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetConnectedPeersResponse](../../models/operations/getconnectedpeersresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

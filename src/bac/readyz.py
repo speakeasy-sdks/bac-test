@@ -11,6 +11,7 @@ class Readyz:
         self.sdk_configuration = sdk_config
         
     
+    
     def get(self) -> operations.GetReadyzResponse:
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         

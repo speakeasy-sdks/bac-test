@@ -1,5 +1,5 @@
 # Nodes
-(*.nodes*)
+(*nodes*)
 
 ### Available Operations
 
@@ -28,4 +28,9 @@ if res.classes is not None:
 ### Response
 
 **[operations.DisplayNodesResponse](../../models/operations/displaynodesresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

@@ -1,5 +1,5 @@
 # Livez
-(*.livez*)
+(*livez*)
 
 ### Available Operations
 
@@ -26,4 +26,8 @@ if res.plain_success is not None:
 ### Response
 
 **[operations.GetLivezResponse](../../models/operations/getlivezresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

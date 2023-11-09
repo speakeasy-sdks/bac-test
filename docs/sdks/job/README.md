@@ -1,5 +1,5 @@
 # Job
-(*.job*)
+(*job*)
 
 ### Available Operations
 
@@ -30,7 +30,14 @@ if res.success is not None:
 ### Response
 
 **[operations.ApproveJobResponse](../../models/operations/approvejobresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.Forbidden           | 403                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |
 
 ## cancel
 
@@ -72,7 +79,15 @@ if res.cancel_response is not None:
 ### Response
 
 **[operations.CancelJobResponse](../../models/operations/canceljobresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.Unauthorized        | 401                        | application/json           |
+| errors.Forbidden           | 403                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |
 
 ## submit
 
@@ -201,4 +216,10 @@ if res.submit_response is not None:
 ### Response
 
 **[operations.SubmitJobResponse](../../models/operations/submitjobresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

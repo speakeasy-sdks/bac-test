@@ -12,6 +12,7 @@ class Jobs:
         self.sdk_configuration = sdk_config
         
     
+    
     def list(self, request: shared.ListRequest) -> operations.ListJobsResponse:
         r"""Simply lists jobs.
         Returns the first (sorted) #`max_jobs` jobs that belong to the `client_id` passed in the body payload (by default).

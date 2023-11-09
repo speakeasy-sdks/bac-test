@@ -1,5 +1,5 @@
 # Jobs
-(*.jobs*)
+(*jobs*)
 
 ### Available Operations
 
@@ -50,4 +50,10 @@ if res.list_response is not None:
 ### Response
 
 **[operations.ListJobsResponse](../../models/operations/listjobsresponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.BadRequest          | 400                        | application/json           |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |

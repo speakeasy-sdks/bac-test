@@ -1,5 +1,5 @@
 # NodeInfo
-(*.node_info*)
+(*node_info*)
 
 ### Available Operations
 
@@ -28,4 +28,9 @@ if res.node_info is not None:
 ### Response
 
 **[operations.GetNodeInfoResponse](../../models/operations/getnodeinforesponse.md)**
+### Errors
 
+| Error Object               | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.InternalServerError | 500                        | application/json           |
+| errors.SDKError            | 400-600                    | */*                        |
