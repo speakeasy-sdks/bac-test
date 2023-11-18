@@ -25,6 +25,7 @@ src/bac/utils/__init__.py
 src/bac/utils/retries.py
 src/bac/utils/utils.py
 src/bac/models/errors/sdkerror.py
+tests/helpers.py
 src/bac/models/operations/approvejob.py
 src/bac/models/operations/canceljob.py
 src/bac/models/operations/submitjob.py

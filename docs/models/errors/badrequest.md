@@ -1,5 +1,7 @@
 # BadRequest
 
+Bad Request
+
 
 ## Fields
 
