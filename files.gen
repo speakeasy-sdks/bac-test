@@ -112,7 +112,6 @@ src/bac/models/__init__.py
 src/bac/models/errors/__init__.py
 src/bac/models/operations/__init__.py
 src/bac/models/shared/__init__.py
-USAGE.md
 docs/models/operations/approvejobresponse.md
 docs/models/operations/canceljobresponse.md
 docs/models/operations/submitjobresponse.md
@@ -214,4 +213,5 @@ docs/sdks/results/README.md
 docs/sdks/states/README.md
 docs/sdks/varz/README.md
 docs/sdks/buildversion/README.md
+USAGE.md
 .gitattributes

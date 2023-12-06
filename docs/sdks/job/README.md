@@ -134,7 +134,7 @@ req = shared.SubmitRequest(
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "key": 'string',
+                        'key': 'string',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                     s3=shared.S3StorageSpec(),
@@ -156,7 +156,7 @@ req = shared.SubmitRequest(
                 shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "key": 'string',
+                        'key': 'string',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                     s3=shared.S3StorageSpec(),
@@ -164,7 +164,7 @@ req = shared.SubmitRequest(
             ],
             publisher_spec=shared.PublisherSpec(
                 params={
-                    "key": 'string',
+                    'key': 'string',
                 },
             ),
             resources=shared.ResourceUsageConfig(),
@@ -172,19 +172,19 @@ req = shared.SubmitRequest(
                 entry_module=shared.StorageSpec(
                     cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                     metadata={
-                        "key": 'string',
+                        'key': 'string',
                     },
                     name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                     s3=shared.S3StorageSpec(),
                 ),
                 environment_variables={
-                    "key": 'string',
+                    'key': 'string',
                 },
                 import_modules=[
                     shared.StorageSpec(
                         cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
                         metadata={
-                            "key": 'string',
+                            'key': 'string',
                         },
                         name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
                         s3=shared.S3StorageSpec(),
