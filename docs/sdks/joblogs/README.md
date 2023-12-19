@@ -54,4 +54,4 @@ if res.success is not None:
 | errors.Unauthorized        | 401                        | application/json           |
 | errors.Forbidden           | 403                        | application/json           |
 | errors.InternalServerError | 500                        | application/json           |
-| errors.SDKError            | 400-600                    | */*                        |
+| errors.SDKError            | 4x-5xx                     | */*                        |

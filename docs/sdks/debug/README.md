@@ -33,4 +33,4 @@ if res.success is not None:
 | Error Object               | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.InternalServerError | 500                        | application/json           |
-| errors.SDKError            | 400-600                    | */*                        |
+| errors.SDKError            | 4x-5xx                     | */*                        |

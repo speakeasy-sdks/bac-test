@@ -37,7 +37,7 @@ if res.success is not None:
 | errors.BadRequest          | 400                        | application/json           |
 | errors.Forbidden           | 403                        | application/json           |
 | errors.InternalServerError | 500                        | application/json           |
-| errors.SDKError            | 400-600                    | */*                        |
+| errors.SDKError            | 4x-5xx                     | */*                        |
 
 ## cancel
 
@@ -87,7 +87,7 @@ if res.cancel_response is not None:
 | errors.Unauthorized        | 401                        | application/json           |
 | errors.Forbidden           | 403                        | application/json           |
 | errors.InternalServerError | 500                        | application/json           |
-| errors.SDKError            | 400-600                    | */*                        |
+| errors.SDKError            | 4x-5xx                     | */*                        |
 
 ## submit
 
@@ -222,4 +222,4 @@ if res.submit_response is not None:
 | -------------------------- | -------------------------- | -------------------------- |
 | errors.BadRequest          | 400                        | application/json           |
 | errors.InternalServerError | 500                        | application/json           |
-| errors.SDKError            | 400-600                    | */*                        |
+| errors.SDKError            | 4x-5xx                     | */*                        |

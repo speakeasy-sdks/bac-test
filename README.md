@@ -121,7 +121,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | errors.BadRequest          | 400                        | application/json           |
 | errors.Forbidden           | 403                        | application/json           |
 | errors.InternalServerError | 500                        | application/json           |
-| errors.SDKError            | 400-600                    | */*                        |
+| errors.SDKError            | 4x-5xx                     | */*                        |
 
 ### Example
 
