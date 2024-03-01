@@ -24,10 +24,10 @@ class Spec:
     r"""Annotations on the job - could be user or machine assigned"""
     deal: Optional[Deal] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Deal'), 'exclude': lambda f: f is None }})
     r"""The deal the client has made, such as which job bids they have accepted."""
-    docker: Optional[JobSpecDocker] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Docker'), 'exclude': lambda f: f is None }})
-    r"""executor specific data"""
     do_not_track: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('DoNotTrack'), 'exclude': lambda f: f is None }})
     r"""Do not track specified by the client"""
+    docker: Optional[JobSpecDocker] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Docker'), 'exclude': lambda f: f is None }})
+    r"""executor specific data"""
     engine: Optional[Engine] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Engine'), 'exclude': lambda f: f is None }})
     r"""e.g. docker or language"""
     inputs: Optional[List[StorageSpec]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('Inputs'), 'exclude': lambda f: f is None }})

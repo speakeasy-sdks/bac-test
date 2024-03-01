@@ -3,15 +3,15 @@ id: 4381306b-c80e-4ea2-8fd9-237f4c6d67c4
 management:
   docChecksum: 537b1aa55043f21b45546f608f384bee
   speakeasyVersion: internal
-  generationVersion: 2.225.2
-  releaseVersion: 0.16.1
-  configChecksum: dba1821aec7e731fd8d7634918b22397
+  generationVersion: 2.275.4
+  releaseVersion: 0.17.0
+  configChecksum: 2a536402fedfaa679a760340ba261fd1
   repoURL: https://github.com/speakeasy-sdks/bac-test.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/bac-test.git
 features:
   python:
-    core: 4.4.0
+    core: 4.5.0
     enums: 2.81.1
     globalServerURLs: 2.82.1
     groups: 2.81.2
@@ -234,3 +234,6 @@ generatedFiles:
   - docs/sdks/buildversion/README.md
   - USAGE.md
   - .gitattributes
+  - src/bac/_hooks/sdkhooks.py
+  - src/bac/_hooks/types.py
+  - src/bac/_hooks/__init__.py

@@ -127,6 +127,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import bac
+from bac.models import errors
 
 s = bac.Bac()
 
@@ -135,16 +136,16 @@ res = None
 try:
     res = s.job.approve()
 except errors.BadRequest as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 except errors.Forbidden as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 except errors.InternalServerError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 except errors.SDKError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 
 if res.success is not None:
@@ -208,7 +209,7 @@ if res.success is not None:
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+The Python SDK makes API calls using the [requests](https://pypi.org/project/requests/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python

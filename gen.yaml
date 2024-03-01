@@ -5,8 +5,16 @@ generation:
     optionalPropertyRendering: withExample
   fixes:
     nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
 python:
-  version: 0.16.1
+  version: 0.17.0
+  additionalDependencies:
+    dependencies: {}
+    extraDependencies:
+      dev: {}
   author: team-ws
   clientServerStatusCodesAsErrors: true
   description: Python Client SDK for Bac API

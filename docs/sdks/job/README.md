@@ -54,12 +54,12 @@ from bac.models import shared
 s = bac.Bac()
 
 req = shared.CancelRequest(
-    client_public_key='string',
+    client_public_key='<value>',
     payload=shared.JobCancelPayload(
-        client_id='string',
-        job_id='string',
+        client_id='<value>',
+        job_id='<value>',
     ),
-    signature='string',
+    signature='<value>',
 )
 
 res = s.job.cancel(req)
@@ -110,93 +110,13 @@ from bac.models import shared
 s = bac.Bac()
 
 req = shared.SubmitRequest(
-    client_public_key='string',
+    client_public_key='<value>',
     payload=shared.JobCreatePayload(
         api_version='V1beta1',
-        client_id='string',
-        spec=shared.Spec(
-            annotations=[
-                'string',
-            ],
-            deal=shared.Deal(),
-            docker=shared.JobSpecDocker(
-                entrypoint=[
-                    'string',
-                ],
-                environment_variables=[
-                    'string',
-                ],
-                parameters=[
-                    'string',
-                ],
-            ),
-            inputs=[
-                shared.StorageSpec(
-                    cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                    metadata={
-                        'key': 'string',
-                    },
-                    name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    s3=shared.S3StorageSpec(),
-                ),
-            ],
-            network=shared.NetworkConfig(
-                domains=[
-                    'string',
-                ],
-            ),
-            node_selectors=[
-                shared.LabelSelectorRequirement(
-                    values=[
-                        'string',
-                    ],
-                ),
-            ],
-            outputs=[
-                shared.StorageSpec(
-                    cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                    metadata={
-                        'key': 'string',
-                    },
-                    name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    s3=shared.S3StorageSpec(),
-                ),
-            ],
-            publisher_spec=shared.PublisherSpec(
-                params={
-                    'key': 'string',
-                },
-            ),
-            resources=shared.ResourceUsageConfig(),
-            wasm=shared.JobSpecWasm(
-                entry_module=shared.StorageSpec(
-                    cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                    metadata={
-                        'key': 'string',
-                    },
-                    name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                    s3=shared.S3StorageSpec(),
-                ),
-                environment_variables={
-                    'key': 'string',
-                },
-                import_modules=[
-                    shared.StorageSpec(
-                        cid='QmTVmC7JBD2ES2qGPqBNVWnX1KeEPNrPGb7rJ8cpFgtefe',
-                        metadata={
-                            'key': 'string',
-                        },
-                        name='job-9304c616-291f-41ad-b862-54e133c0149e-host-QmdZQ7ZbhnvWY1J12XYKGHApJ6aufKyLNSvf8jZBrBaAVL',
-                        s3=shared.S3StorageSpec(),
-                    ),
-                ],
-                parameters=[
-                    'string',
-                ],
-            ),
-        ),
+        client_id='<value>',
+        spec=shared.Spec(),
     ),
-    signature='string',
+    signature='<value>',
 )
 
 res = s.job.submit(req)
