@@ -38,6 +38,7 @@ res = s.jobs.list(req)
 if res.list_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

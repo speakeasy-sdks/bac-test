@@ -35,6 +35,7 @@ res = s.connected_peers.get()
 if res.classes is not None:
     # handle response
     pass
+
 ```
 
 

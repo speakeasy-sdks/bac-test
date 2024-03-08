@@ -82,6 +82,7 @@ res = s.states.get(req)
 if res.state_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

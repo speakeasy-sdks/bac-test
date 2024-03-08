@@ -22,6 +22,7 @@ res = s.host_node_id.get()
 if res.plain_success is not None:
     # handle response
     pass
+
 ```
 
 

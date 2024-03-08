@@ -28,6 +28,7 @@ res = s.job_events.get(req)
 if res.events_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

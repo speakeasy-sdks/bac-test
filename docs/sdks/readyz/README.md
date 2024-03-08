@@ -20,6 +20,7 @@ res = s.readyz.get()
 if res.plain_success is not None:
     # handle response
     pass
+
 ```
 
 
